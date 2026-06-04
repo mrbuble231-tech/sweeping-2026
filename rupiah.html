@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Rupiah Pemakaian Air 2026</title>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<div class="menu">
+    <a href="index.html">Dashboard Kubikasi</a>
+    <a href="rupiah.html">Dashboard Rupiah</a>
+</div>
+
+<div class="container">
+
+    <h1>Dashboard Rupiah Pemakaian Air 2026</h1>
+
+    <p>Last Update : <span id="lastUpdate">-</span></p>
+
+    <div class="cards">
+        <div class="card">
+            <h4>Total Bayar Rupiah</h4>
+            <h2 id="totalBayar">Rp 0</h2>
+        </div>
+
+        <div class="card">
+            <h4>Total Belum Bayar Rupiah</h4>
+            <h2 id="totalBelumBayar">Rp 0</h2>
+        </div>
+
+        <div class="card">
+            <h4>Total Rekap</h4>
+            <h2 id="totalRekap">Rp 0</h2>
+        </div>
+
+        <div class="card">
+            <h4>KPI Rupiah</h4>
+            <h2 id="kpi">0%</h2>
+        </div>
+    </div>
+
+    <div class="chart-container">
+        <canvas id="myChart"></canvas>
+    </div>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Bulan</th>
+                    <th>Bayar Rupiah</th>
+                    <th>Belum Bayar Rupiah</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody id="tableData"></tbody>
+        </table>
+    </div>
+
+</div>
+
+<script src="rupiah.js"></script>
+
+</body>
+</html>
