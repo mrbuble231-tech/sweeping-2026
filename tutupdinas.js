@@ -42,7 +42,8 @@ new Chart(ctx, {
         ]
     },
     options: {
-        responsive: true,
+    responsive: true,
+    maintainAspectRatio: false,
         plugins: {
             title: {
                 display: true,
