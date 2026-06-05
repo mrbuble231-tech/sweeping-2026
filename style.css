@@ -125,8 +125,8 @@ h1{
 }
 
 #myChart{
-  width:100% !important;
-    height:350px !important;
+    width:100% !important;
+    height:600px !important;
 }
 
 /* TABLE */
@@ -171,7 +171,7 @@ table tr:hover{
     }
 
     .card h2{
-        font-size:42px;
+         font-size:28px;
     }
 
     #myChart{
