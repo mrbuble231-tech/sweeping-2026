@@ -1,127 +1,156 @@
+let myChart = null;
+
 const data = [
 
 {
-    bulan: "JANUARI",
-    terima: 4238,
-    bayar: 3550,
-    persen: 83.77,
-    penangguhan: 0
+bulan:"Januari",
+terima:4238,
+bayar:3550
 },
 
 {
-    bulan: "FEBRUARI",
-    terima: 4133,
-    bayar: 3476,
-    persen: 84.10,
-    penangguhan: 0
+bulan:"Februari",
+terima:4133,
+bayar:3476
 },
 
 {
-    bulan: "MARET",
-    terima: 4529,
-    bayar: 3747,
-    persen: 82.73,
-    penangguhan: 0
+bulan:"Maret",
+terima:4529,
+bayar:3747
 },
 
 {
-    bulan: "APRIL",
-    terima: 4434,
-    bayar: 3809,
-    persen: 85.90,
-    penangguhan: 31
+bulan:"April",
+terima:4434,
+bayar:3809
 },
 
 {
-    bulan: "MEI",
-    terima: 3696,
-    bayar: 3078,
-    persen: 83.28,
-    penangguhan: 14
+bulan:"Mei",
+terima:3696,
+bayar:3078
 }
 
 ];
 
+function loadData(){
+
 let totalTerima = 0;
 let totalBayar = 0;
-let totalPenangguhan = 0;
 
-const tbody = document.getElementById("tableData");
+const tbody =
+document.getElementById("tableData");
 
-data.forEach((item, index) => {
+tbody.innerHTML = "";
 
-    totalTerima += item.terima;
-    totalBayar += item.bayar;
-    totalPenangguhan += item.penangguhan;
+data.forEach((x,index)=>{
 
-    tbody.innerHTML += `
-    <tr>
-        <td>${index + 1}</td>
-        <td>${item.bulan}</td>
-        <td>${item.terima.toLocaleString("id-ID")}</td>
-        <td>${item.bayar.toLocaleString("id-ID")}</td>
-        <td>${item.persen}%</td>
-        <td>${item.penangguhan}</td>
-    </tr>
-    `;
+let persen =
+((x.bayar/x.terima)*100).toFixed(2);
+
+totalTerima += x.terima;
+totalBayar += x.bayar;
+
+tbody.innerHTML += `
+<tr>
+<td>${index+1}</td>
+<td>${x.bulan}</td>
+<td>${x.terima.toLocaleString("id-ID")}</td>
+<td>${x.bayar.toLocaleString("id-ID")}</td>
+<td>${persen}%</td>
+</tr>
+`;
+
 });
 
-const persenTotal =
-((totalBayar / totalTerima) * 100);
+const totalAM = 1519;
+const totalPPP = 1121;
+const totalPenangguhan = 45;
 
-document.getElementById("totalTerima").innerHTML =
+const persentase =
+((totalBayar/totalTerima)*100);
+
+document.getElementById("totalTerima")
+.innerHTML =
 totalTerima.toLocaleString("id-ID");
 
-document.getElementById("totalBayar").innerHTML =
+document.getElementById("realisasiBayar")
+.innerHTML =
 totalBayar.toLocaleString("id-ID");
 
-document.getElementById("persentase").innerHTML =
-persenTotal.toFixed(2) + "%";
+document.getElementById("potongPipa")
+.innerHTML =
+totalPPP.toLocaleString("id-ID");
 
-document.getElementById("penangguhan").innerHTML =
+document.getElementById("angkatMeter")
+.innerHTML =
+totalAM.toLocaleString("id-ID");
+
+document.getElementById("penangguhan")
+.innerHTML =
 totalPenangguhan.toLocaleString("id-ID");
 
-document.getElementById("lastUpdate").innerHTML =
+document.getElementById("persentase")
+.innerHTML =
+persentase.toFixed(2) + "%";
+
+document.getElementById("lastUpdate")
+.innerHTML =
 new Date().toLocaleString("id-ID");
 
-new Chart(document.getElementById("myChart"), {
+updateChart();
 
-    type: "bar",
+}
 
-    data: {
+function updateChart(){
 
-        labels: data.map(x => x.bulan),
+const ctx =
+document.getElementById("myChart");
 
-        datasets: [
+if(myChart){
+myChart.destroy();
+}
 
-        {
-            label: "Terima",
-            data: data.map(x => x.terima),
-            backgroundColor: "rgba(54,162,235,0.7)"
-        },
+myChart =
+new Chart(ctx,{
 
-        {
-            label: "Realisasi Bayar",
-            data: data.map(x => x.bayar),
-            backgroundColor: "rgba(75,192,192,0.7)"
-        }
+type:"bar",
 
-        ]
+data:{
 
-    },
+labels:data.map(x=>x.bulan),
 
-    options: {
+datasets:[
 
-        responsive: true,
+{
+label:"Terima",
+data:data.map(x=>x.terima),
+backgroundColor:"rgba(54,162,235,0.7)"
+},
 
-        plugins: {
+{
+label:"Realisasi Bayar",
+data:data.map(x=>x.bayar),
+backgroundColor:"rgba(75,192,192,0.7)"
+}
 
-            legend: {
-                position: "top"
-            }
+]
 
-        }
+},
 
-    }
+options:{
+responsive:true,
+
+plugins:{
+legend:{
+position:"top"
+}
+}
+}
 
 });
+
+}
+
+loadData();
