@@ -179,3 +179,14 @@ table tr:hover{
         height:350px !important;
     }
 }
+.chart-container{
+    width:100%;
+    height:500px;
+    background:#fff;
+    margin-top:20px;
+}
+
+#myChart{
+    width:100% !important;
+    height:450px !important;
+}
