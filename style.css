@@ -37,10 +37,10 @@ body{
 /* CONTAINER */
 
 .container{
-    width:100%;
-    max-width:1400px;
+    width:min(1200px,100%);
     margin:0 auto;
     padding:25px;
+    box-sizing:border-box;
 }
 
 h3{
@@ -184,6 +184,30 @@ table tr:hover{
     background:#fff;
     margin-top:30px;
     padding:20px;
+}
+
+#myChart{
+    width:100% !important;
+    height:600px !important;
+}
+html,
+body{
+    width:100%;
+    min-width:1200px;
+}
+
+.container{
+    width:1200px !important;
+    max-width:1200px !important;
+    margin:0 auto !important;
+}
+
+.cards{
+    width:100% !important;
+}
+
+.chart-container{
+    width:100% !important;
 }
 
 #myChart{
