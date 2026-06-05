@@ -4,8 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Tutup Dinas 2026</title>
+    <title>Dashboard Tutup Dinas 2026</title>
 
     <link rel="stylesheet" href="style.css">
 
@@ -30,8 +29,6 @@
             <span id="lastUpdate">-</span>
         </p>
 
-        <!-- KPI CARD -->
-
         <div class="cards">
 
             <div class="card">
@@ -46,67 +43,33 @@
 
             <div class="card">
                 <h4>Potong Pipa</h4>
-                <h2 id="totalPPP">0</h2>
+                <h2 id="potongPipa">0</h2>
             </div>
 
             <div class="card">
                 <h4>Angkat Meter</h4>
-                <h2 id="totalAM">0</h2>
+                <h2 id="angkatMeter">0</h2>
             </div>
 
             <div class="card">
                 <h4>Penangguhan</h4>
-                <h2 id="totalPenangguhan">0</h2>
+                <h2 id="penangguhan">0</h2>
             </div>
 
             <div class="card">
                 <h4>Persentase</h4>
-                <h2 id="persen">0%</h2>
+                <h2 id="persentase">0%</h2>
             </div>
 
         </div>
 
-        <!-- GRAFIK -->
-
         <div class="chart-container">
-
             <canvas id="myChart"></canvas>
-
-        </div>
-
-        <!-- TABEL -->
-
-        <div class="table-container">
-
-            <h2>Rekap Bulanan Tutup Dinas</h2>
-
-            <table>
-
-                <thead>
-
-                    <tr>
-                        <th>No</th>
-                        <th>Bulan</th>
-                        <th>Terima</th>
-                        <th>Realisasi Bayar</th>
-                        <th>%</th>
-                        <th>AM</th>
-                        <th>PPP</th>
-                        <th>Penangguhan</th>
-                    </tr>
-
-                </thead>
-
-                <tbody id="tableData">
-
-                </tbody>
-
-            </table>
-
         </div>
 
     </div>
 
+    <!-- PENTING -->
     <script src="tutupdinas.js"></script>
 
 </body>
