@@ -1,156 +1,76 @@
-let myChart = null;
+function updateChart(data) {
 
-const data = [
+    const ctx = document.getElementById("myChart");
 
-{
-bulan:"Januari",
-terima:4238,
-bayar:3550
-},
+    if (myChart) {
+        myChart.destroy();
+    }
 
-{
-bulan:"Februari",
-terima:4133,
-bayar:3476
-},
+    myChart = new Chart(ctx, {
 
-{
-bulan:"Maret",
-terima:4529,
-bayar:3747
-},
+        type: "bar",
 
-{
-bulan:"April",
-terima:4434,
-bayar:3809
-},
+        data: {
 
-{
-bulan:"Mei",
-terima:3696,
-bayar:3078
-}
+            labels: data.map(x => x.bulan),
 
-];
+            datasets: [
 
-function loadData(){
+                {
+                    label: "Realisasi Bayar",
+                    data: data.map(x => x.bayar),
+                    backgroundColor: "rgba(54,162,235,0.8)"
+                },
 
-let totalTerima = 0;
-let totalBayar = 0;
+                {
+                    label: "Belum Bayar",
+                    data: data.map(x => x.terima - x.bayar),
+                    backgroundColor: "rgba(255,99,132,0.8)"
+                },
 
-const tbody =
-document.getElementById("tableData");
+                {
+                    label: "Potong Pipa",
+                    data: data.map(x => x.ppp),
+                    backgroundColor: "rgba(255,206,86,0.8)"
+                },
 
-tbody.innerHTML = "";
+                {
+                    label: "Angkat Meter",
+                    data: data.map(x => x.am),
+                    backgroundColor: "rgba(75,192,192,0.8)"
+                }
 
-data.forEach((x,index)=>{
+            ]
 
-let persen =
-((x.bayar/x.terima)*100).toFixed(2);
+        },
 
-totalTerima += x.terima;
-totalBayar += x.bayar;
+        options: {
 
-tbody.innerHTML += `
-<tr>
-<td>${index+1}</td>
-<td>${x.bulan}</td>
-<td>${x.terima.toLocaleString("id-ID")}</td>
-<td>${x.bayar.toLocaleString("id-ID")}</td>
-<td>${persen}%</td>
-</tr>
-`;
+            responsive: true,
 
-});
+            plugins: {
 
-const totalAM = 1519;
-const totalPPP = 1121;
-const totalPenangguhan = 45;
+                legend: {
+                    position: "top"
+                },
 
-const persentase =
-((totalBayar/totalTerima)*100);
+                title: {
+                    display: true,
+                    text: "Monitoring Tutup Dinas 2026"
+                }
 
-document.getElementById("totalTerima")
-.innerHTML =
-totalTerima.toLocaleString("id-ID");
+            },
 
-document.getElementById("realisasiBayar")
-.innerHTML =
-totalBayar.toLocaleString("id-ID");
+            scales: {
 
-document.getElementById("potongPipa")
-.innerHTML =
-totalPPP.toLocaleString("id-ID");
+                y: {
+                    beginAtZero: true
+                }
 
-document.getElementById("angkatMeter")
-.innerHTML =
-totalAM.toLocaleString("id-ID");
+            }
 
-document.getElementById("penangguhan")
-.innerHTML =
-totalPenangguhan.toLocaleString("id-ID");
+        }
 
-document.getElementById("persentase")
-.innerHTML =
-persentase.toFixed(2) + "%";
-
-document.getElementById("lastUpdate")
-.innerHTML =
-new Date().toLocaleString("id-ID");
-
-updateChart();
+    });
 
 }
-
-function updateChart(){
-
-const ctx =
-document.getElementById("myChart");
-
-if(myChart){
-myChart.destroy();
-}
-
-myChart =
-new Chart(ctx,{
-
-type:"bar",
-
-data:{
-
-labels:data.map(x=>x.bulan),
-
-datasets:[
-
-{
-label:"Terima",
-data:data.map(x=>x.terima),
-backgroundColor:"rgba(54,162,235,0.7)"
-},
-
-{
-label:"Realisasi Bayar",
-data:data.map(x=>x.bayar),
-backgroundColor:"rgba(75,192,192,0.7)"
-}
-
-]
-
-},
-
-options:{
-responsive:true,
-
-plugins:{
-legend:{
-position:"top"
-}
-}
-}
-
-});
-
-}
-
-loadData();

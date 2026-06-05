@@ -2,96 +2,113 @@
 <html lang="id">
 
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Tutup Dinas 2026</title>
+    <title>Tutup Dinas 2026</title>
 
-<link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css">
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
 
-<div class="menu">
-    <a href="index.html">Dashboard Kubikasi</a>
-    <a href="rupiah.html">Dashboard Rupiah</a>
-    <a href="index_tutupdinas.html">Dashboard Tutup Dinas</a>
-</div>
+    <div class="menu">
+        <a href="index.html">Dashboard Kubikasi</a>
+        <a href="rupiah.html">Dashboard Rupiah</a>
+        <a href="index_tutupdinas.html">Dashboard Tutup Dinas</a>
+    </div>
 
-<div class="container">
+    <div class="container">
 
-    <h3>SWEEPING 2026</h3>
+        <h3>SWEEPING 2026</h3>
+        <h1>Dashboard Monitoring Tutup Dinas 2026</h1>
 
-    <h1>Dashboard Monitoring Tutup Dinas 2026</h1>
+        <p class="update-info">
+            Last Update :
+            <span id="lastUpdate">-</span>
+        </p>
 
-    <p class="update-info">
-        Last Update :
-        <span id="lastUpdate">-</span>
-    </p>
+        <!-- KPI CARD -->
 
-    <div class="cards">
+        <div class="cards">
 
-        <div class="card">
-            <h4>Total Terima</h4>
-            <h2 id="totalTerima">0</h2>
+            <div class="card">
+                <h4>Total Terima</h4>
+                <h2 id="totalTerima">0</h2>
+            </div>
+
+            <div class="card">
+                <h4>Realisasi Bayar</h4>
+                <h2 id="totalBayar">0</h2>
+            </div>
+
+            <div class="card">
+                <h4>Potong Pipa</h4>
+                <h2 id="totalPPP">0</h2>
+            </div>
+
+            <div class="card">
+                <h4>Angkat Meter</h4>
+                <h2 id="totalAM">0</h2>
+            </div>
+
+            <div class="card">
+                <h4>Penangguhan</h4>
+                <h2 id="totalPenangguhan">0</h2>
+            </div>
+
+            <div class="card">
+                <h4>Persentase</h4>
+                <h2 id="persen">0%</h2>
+            </div>
+
         </div>
 
-        <div class="card">
-            <h4>Realisasi Bayar</h4>
-            <h2 id="realisasiBayar">0</h2>
+        <!-- GRAFIK -->
+
+        <div class="chart-container">
+
+            <canvas id="myChart"></canvas>
+
         </div>
 
-        <div class="card">
-            <h4>Potong Pipa</h4>
-            <h2 id="potongPipa">0</h2>
-        </div>
+        <!-- TABEL -->
 
-        <div class="card">
-            <h4>Angkat Meter</h4>
-            <h2 id="angkatMeter">0</h2>
-        </div>
+        <div class="table-container">
 
-        <div class="card">
-            <h4>Penangguhan</h4>
-            <h2 id="penangguhan">0</h2>
-        </div>
+            <h2>Rekap Bulanan Tutup Dinas</h2>
 
-        <div class="card">
-            <h4>Persentase</h4>
-            <h2 id="persentase">0%</h2>
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>No</th>
+                        <th>Bulan</th>
+                        <th>Terima</th>
+                        <th>Realisasi Bayar</th>
+                        <th>%</th>
+                        <th>AM</th>
+                        <th>PPP</th>
+                        <th>Penangguhan</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="tableData">
+
+                </tbody>
+
+            </table>
+
         </div>
 
     </div>
 
-    <div class="chart-container">
-        <canvas id="myChart"></canvas>
-    </div>
-
-    <div class="table-container">
-
-        <table>
-
-            <thead>
-                <tr>
-                    <th>No</th>
-                    <th>Bulan</th>
-                    <th>Terima</th>
-                    <th>Realisasi Bayar</th>
-                    <th>%</th>
-                </tr>
-            </thead>
-
-            <tbody id="tableData"></tbody>
-
-        </table>
-
-    </div>
-
-</div>
-
-<script src="tutupdinas.js"></script>
+    <script src="tutupdinas.js"></script>
 
 </body>
+
 </html>
