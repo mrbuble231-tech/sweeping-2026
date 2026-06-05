@@ -53,11 +53,11 @@ new Chart(ctx, {
 });
 function downloadPDF() {
 
-    const chart = document.getElementById("myChart");
+    const chart = Chart.getChart("myChart");
 
     if (chart) {
-        chart.style.height = "400px";
-        chart.style.width = "100%";
+        chart.resize(1200, 500);
+        chart.update();
     }
 
     setTimeout(() => {
@@ -65,19 +65,15 @@ function downloadPDF() {
         html2pdf()
             .from(document.querySelector(".container"))
             .set({
-                margin: 0.3,
+                margin: 5,
                 filename: 'Dashboard_Tutup_Dinas_2026.pdf',
-                image: {
-                    type: 'jpeg',
-                    quality: 1
-                },
                 html2canvas: {
-                    scale: 3,
+                    scale: 4,
                     useCORS: true
                 },
                 jsPDF: {
                     unit: 'mm',
-                    format: 'a4',
+                    format: 'a3',
                     orientation: 'landscape'
                 }
             })

@@ -181,12 +181,12 @@ table tr:hover{
 }
 .chart-container{
     width:100%;
-    height:500px;
     background:#fff;
-    margin-top:20px;
+    margin-top:30px;
+    padding:20px;
 }
 
 #myChart{
     width:100% !important;
-    height:450px !important;
+    height:600px !important;
 }
