@@ -216,8 +216,8 @@ body{
 .footer-credit{
     text-align:center;
     margin-top:30px;
-    padding:15px;
+    padding:20px;
     color:#666;
-    font-size:14px;
-    font-style:italic;
+    font-size:28px;
+    font-weight:bold;
 }
