@@ -28,7 +28,7 @@ new Chart(ctx, {
             {
                 label: "Realisasi Bayar",
                 data: [3555, 3476, 3747, 3809, 3078],
-                backgroundColor: "#16a34a"
+                backgroundColor: "#14b8a6"
             },
             {
                 label: "Belum Bayar",
@@ -44,7 +44,22 @@ new Chart(ctx, {
                 label: "Angkat Meter",
                 data: [309, 275, 287, 342, 312],
                 backgroundColor: "#2563eb"
-            }
+            },
+{
+    label: "PGL",
+    data: [103, 116, 167, 21, 51],
+    backgroundColor: "#16a34a"
+},
+{
+    label: "TB",
+    data: [31, 38, 60, 11, 14],
+    backgroundColor: "#f59e0b"
+},
+{
+    label: "PK",
+    data: [16, 14, 28, 6, 2],
+    backgroundColor: "#8b5cf6"
+}
         ]
     },
 
