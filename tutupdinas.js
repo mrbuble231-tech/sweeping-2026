@@ -96,9 +96,10 @@ function downloadPDF() {
     const container = document.querySelector(".container");
 
     const oldTransform = container.style.transform;
-    const oldOrigin = container.style.transformOrigin;
+    const oldWidth = container.style.width;
 
-    container.style.transform = "scale(0.75)";
+    container.style.width = "1000px";
+    container.style.transform = "scale(0.65)";
     container.style.transformOrigin = "top left";
 
     html2pdf()
@@ -106,17 +107,9 @@ function downloadPDF() {
         .set({
             margin: 0,
             filename: "Dashboard_Tutup_Dinas_2026.pdf",
-
-            image: {
-                type: "jpeg",
-                quality: 1
-            },
-
             html2canvas: {
-                scale: 2,
-                useCORS: true
+                scale: 2
             },
-
             jsPDF: {
                 unit: "mm",
                 format: "a3",
@@ -126,6 +119,6 @@ function downloadPDF() {
         .save()
         .then(() => {
             container.style.transform = oldTransform;
-            container.style.transformOrigin = oldOrigin;
+            container.style.width = oldWidth;
         });
 }
