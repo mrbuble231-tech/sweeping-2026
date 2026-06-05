@@ -1,76 +1,11 @@
-function updateChart(data) {
+alert("TUTUPDINAS JS JALAN");
 
-    const ctx = document.getElementById("myChart");
+document.getElementById("lastUpdate").textContent =
+new Date().toLocaleString("id-ID");
 
-    if (myChart) {
-        myChart.destroy();
-    }
-
-    myChart = new Chart(ctx, {
-
-        type: "bar",
-
-        data: {
-
-            labels: data.map(x => x.bulan),
-
-            datasets: [
-
-                {
-                    label: "Realisasi Bayar",
-                    data: data.map(x => x.bayar),
-                    backgroundColor: "rgba(54,162,235,0.8)"
-                },
-
-                {
-                    label: "Belum Bayar",
-                    data: data.map(x => x.terima - x.bayar),
-                    backgroundColor: "rgba(255,99,132,0.8)"
-                },
-
-                {
-                    label: "Potong Pipa",
-                    data: data.map(x => x.ppp),
-                    backgroundColor: "rgba(255,206,86,0.8)"
-                },
-
-                {
-                    label: "Angkat Meter",
-                    data: data.map(x => x.am),
-                    backgroundColor: "rgba(75,192,192,0.8)"
-                }
-
-            ]
-
-        },
-
-        options: {
-
-            responsive: true,
-
-            plugins: {
-
-                legend: {
-                    position: "top"
-                },
-
-                title: {
-                    display: true,
-                    text: "Monitoring Tutup Dinas 2026"
-                }
-
-            },
-
-            scales: {
-
-                y: {
-                    beginAtZero: true
-                }
-
-            }
-
-        }
-
-    });
-
-}
+document.getElementById("totalTerima").textContent = "21030";
+document.getElementById("totalBayar").textContent = "17660";
+document.getElementById("potongPipa").textContent = "1121";
+document.getElementById("angkatMeter").textContent = "1519";
+document.getElementById("penangguhan").textContent = "45";
+document.getElementById("persentase").textContent = "83.98%";
