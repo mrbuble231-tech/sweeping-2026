@@ -47,7 +47,7 @@ new Chart(ctx, {
             title: {
                 display: true,
                 text: "Monitoring Tutup Dinas 2026"
-            }
+            }   
         }
     }
 });
