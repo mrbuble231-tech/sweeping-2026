@@ -99,7 +99,7 @@ function downloadPDF() {
     const oldWidth = container.style.width;
 
     container.style.width = "1000px";
-    container.style.transform = "scale(0.50)";
+    container.style.transform = "scale(0.85)";
     container.style.transformOrigin = "top left";
 
     html2pdf()
