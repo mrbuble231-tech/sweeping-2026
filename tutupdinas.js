@@ -54,31 +54,31 @@ new Chart(ctx, {
 });
 function downloadPDF() {
 
-    const chart = Chart.getChart("myChart");
+    const container = document.querySelector(".container");
 
-    if (chart) {
-        chart.resize(1200, 500);
-        chart.update();
-    }
+    const oldTransform = container.style.transform;
+    const oldOrigin = container.style.transformOrigin;
 
-    setTimeout(() => {
+    container.style.transform = "scale(0.75)";
+    container.style.transformOrigin = "top left";
 
-        html2pdf()
-            .from(document.querySelector(".container"))
-            .set({
-                margin: 5,
-                filename: 'Dashboard_Tutup_Dinas_2026.pdf',
-                html2canvas: {
-                    scale: 4,
-                    useCORS: true
-                },
-                jsPDF: {
-                    unit: 'mm',
-                    format: 'a3',
-                    orientation: 'landscape'
-                }
-            })
-            .save();
-
-    }, 1000);
+    html2pdf()
+        .from(container)
+        .set({
+            margin: 0,
+            filename: "Dashboard_Tutup_Dinas_2026.pdf",
+            html2canvas: {
+                scale: 2
+            },
+            jsPDF: {
+                unit: "mm",
+                format: "a3",
+                orientation: "landscape"
+            }
+        })
+        .save()
+        .then(() => {
+            container.style.transform = oldTransform;
+            container.style.transformOrigin = oldOrigin;
+        });
 }

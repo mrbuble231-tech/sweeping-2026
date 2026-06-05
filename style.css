@@ -86,8 +86,7 @@ h1{
 }
 
 .card h2{
-    font-size:60px;
-    font-weight:bold;
+   font-size:32px;
 }
 
 #totalTerima{
@@ -126,8 +125,8 @@ h1{
 }
 
 #myChart{
-   width:100% !important;
-    height:450px !important;
+  width:100% !important;
+    height:350px !important;
 }
 
 /* TABLE */
