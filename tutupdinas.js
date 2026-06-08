@@ -8,108 +8,116 @@ document.getElementById("angkatMeter").textContent = "1.525";
 document.getElementById("penangguhan").textContent = "257";
 document.getElementById("persentase").textContent = "84%";
 
-const ctx = document.getElementById("myChart").getContext("2d");
+const ctx1 = document.getElementById("myChart").getContext("2d");
 
-new Chart(ctx, {
-    type: "bar",
+new Chart(ctx1, {
+type: "bar",
+plugins: [ChartDataLabels],
 
-    plugins: [ChartDataLabels],
+data: {
+    labels: ["Januari", "Februari", "Maret", "April", "Mei"],
+    datasets: [
+        {
+            label: "Terima Bon",
+            data: [4238, 4133, 4526, 4434, 3696],
+            backgroundColor: "#22c55e"
+        },
+        {
+            label: "Realisasi Bayar",
+            data: [3555, 3476, 3747, 3809, 3078],
+            backgroundColor: "#2563eb"
+        },
+        {
+            label: "Belum Bayar",
+            data: [683, 657, 779, 625, 618],
+            backgroundColor: "#dc2626"
+        }
+    ]
+},
 
-    data: {
-        labels: [
-            "Januari",
-            "Februari",
-            "Maret",
-            "April",
-            "Mei"
-        ],
+options: {
+    responsive: true,
+    maintainAspectRatio: false,
 
-        datasets: [
-    {
-        label: "Realisasi Bayar",
-        data: [3555, 3476, 3747, 3809, 3078],
-        backgroundColor: "#16a34a"
-    },
-    {
-        label: "Belum Bayar",
-        data: [683, 657, 779, 625, 618],
-        backgroundColor: "#dc2626"
-    },
-    {
-        label: "Potong Pipa",
-        data: [232, 211, 239, 214, 225],
-        backgroundColor: "#ea580c"
-    },
-    {
-        label: "Angkat Meter",
-        data: [309, 275, 287, 342, 312],
-        backgroundColor: "#2563eb"
-    },
-    {
-        label: "PGL",
-        data: [103, 116, 167, 21, 51],
-        backgroundColor: "#06b6d4"
-    },
-    {
-        label: "TB",
-        data: [31, 38, 60, 11, 14],
-        backgroundColor: "#f59e0b"
-    },
-    {
-        label: "PK",
-        data: [16, 14, 28, 6, 2],
-        backgroundColor: "#8b5cf6"
-    },
-    {
-        label: "Penangguhan",
-        data: [0, 0, 0, 31, 14],
-        backgroundColor: "#14b8a6"
-    }
-]
-        
-    },
-
-    options: {
-        responsive: true,
-        maintainAspectRatio: false,
-
-        plugins: {
-
-            datalabels: {
-                color: "#000",
-                anchor: "end",
-                align: "top",
-                offset: 4,
-
-                font: {
-                    weight: "bold",
-                    size: 11
-                },
-
-                formatter: (value) => {
-                    return value.toLocaleString("id-ID");
-                }
-            },
-
-            legend: {
-                position: "top"
-            },
-
-            title: {
-                display: true,
-                text: "Monitoring Tutup Dinas 2026",
-                font: {
-                    size: 20
-                }
-            }
+    plugins: {
+        datalabels: {
+            color: "#000",
+            anchor: "end",
+            align: "top",
+            formatter: value => value.toLocaleString("id-ID")
         },
 
-        scales: {
-            y: {
-                beginAtZero: true
-            }
+        title: {
+            display: true,
+            text: "Monitoring Terima Bon, Realisasi Bayar & Belum Bayar"
         }
     }
+}
+
+});
+
+const ctx2 = document.getElementById("myChart2").getContext("2d");
+
+new Chart(ctx2, {
+type: "bar",
+plugins: [ChartDataLabels],
+
+data: {
+    labels: ["Januari", "Februari", "Maret", "April", "Mei"],
+
+    datasets: [
+        {
+            label: "Angkat Meter",
+            data: [309, 275, 287, 342, 312],
+            backgroundColor: "#f97316"
+        },
+        {
+            label: "Potong Pipa",
+            data: [232, 211, 239, 214, 225],
+            backgroundColor: "#fbbf24"
+        },
+        {
+            label: "PGL",
+            data: [103, 116, 167, 21, 51],
+            backgroundColor: "#06b6d4"
+        },
+        {
+            label: "TB",
+            data: [31, 38, 60, 11, 14],
+            backgroundColor: "#8b5cf6"
+        },
+        {
+            label: "PK",
+            data: [16, 14, 28, 6, 2],
+            backgroundColor: "#14b8a6"
+        },
+        {
+            label: "Penangguhan",
+            data: [0, 0, 0, 31, 14],
+            backgroundColor: "#ec4899"
+        }
+    ]
+},
+
+options: {
+    responsive: true,
+    maintainAspectRatio: false,
+
+    plugins: {
+        datalabels: {
+            color: "#000",
+            anchor: "end",
+            align: "top",
+            formatter: value => value.toLocaleString("id-ID")
+        },
+
+        title: {
+            display: true,
+            text: "Realisasi Belum Bayar"
+        }
+    }
+}
+
 });
 
 function downloadPDF() {
