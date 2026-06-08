@@ -124,9 +124,28 @@ h1{
     box-shadow:0 4px 15px rgba(0,0,0,0.08);
 }
 
-#myChart{
+#myChart,
+#myChart2{
     width:100% !important;
-    height:600px !important;
+    height:500px !important;
+}
+.chart-container{
+    width:100%;
+    background:#fff;
+    margin-top:30px;
+    padding:20px;
+    border-radius:15px;
+    box-shadow:0 4px 15px rgba(0,0,0,0.08);
+}
+
+.chart-title{
+    display:inline-block;
+    background:#1e40af;
+    color:white;
+    padding:10px 20px;
+    border-radius:8px;
+    margin-bottom:20px;
+    font-size:20px;
 }
 
 /* TABLE */
