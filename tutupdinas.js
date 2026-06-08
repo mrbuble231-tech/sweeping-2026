@@ -1,5 +1,11 @@
-document.getElementById("lastUpdate").textContent =
-new Date().toLocaleString("id-ID");
+function updateClock() {
+    document.getElementById("lastUpdate").textContent =
+        new Date().toLocaleString("id-ID");
+}
+
+updateClock();
+
+setInterval(updateClock, 1000);
 
 document.getElementById("totalTerima").textContent = "21.030";
 document.getElementById("totalBayar").textContent = "17.660";
