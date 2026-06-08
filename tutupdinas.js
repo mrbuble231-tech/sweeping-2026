@@ -7,38 +7,26 @@ function updateClock() {
 }
 updateClock();
 setInterval(updateClock, 1000);
-
 function downloadPDF() {
 
-```
-const container = document.querySelector(".container");
+    const container = document.querySelector(".container");
 
-html2pdf()
-    .from(container)
-    .set({
-        margin: 0,
-        filename: "Dashboard_Tutup_Dinas_2026.pdf",
-        html2canvas: {
-            scale: 2
-        },
-        jsPDF: {
-            unit: "mm",
-            format: "a3",
-            orientation: "landscape"
-        }
-    })
-    .save();
-```
-
+    html2pdf()
+        .from(container)
+        .set({
+            margin: 0,
+            filename: "Dashboard_Tutup_Dinas_2026.pdf",
+            html2canvas: {
+                scale: 2
+            },
+            jsPDF: {
+                unit: "mm",
+                format: "a3",
+                orientation: "landscape"
+            }
+        })
+        .save();
 }
-function updateClock() {
-    document.getElementById("lastUpdate").textContent =
-        new Date().toLocaleString("id-ID");
-}
-
-updateClock();
-
-setInterval(updateClock, 1000);
 
 document.getElementById("totalTerima").textContent = "21.030";
 document.getElementById("totalBayar").textContent = "17.660";
@@ -66,41 +54,45 @@ fetch(SHEET_URL)
 
     rows.forEach(row => {
 
-        if (
-            row.includes("Januari") ||
-            row.includes("Februari") ||
-            row.includes("Maret") ||
-            row.includes("April") ||
-            row.includes("Mei") ||
-            row.includes("Juni") ||
-            row.includes("Juli") ||
-            row.includes("Agustus") ||
-            row.includes("September") ||
-            row.includes("Oktober") ||
-            row.includes("November") ||
-            row.includes("Desember")
-        ) {
+    if (
+        row.includes("Januari") ||
+        row.includes("Februari") ||
+        row.includes("Maret") ||
+        row.includes("April") ||
+        row.includes("Mei") ||
+        row.includes("Juni") ||
+        row.includes("Juli") ||
+        row.includes("Agustus") ||
+        row.includes("September") ||
+        row.includes("Oktober") ||
+        row.includes("November") ||
+        row.includes("Desember")
+    ) {
 
-            const col = row.split(",");
+        const col = row.match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g);
 
-            const bulan = col[1]?.replace(/"/g,"").trim();
+        const bulan = col[1]
+            ?.replace(/"/g, "")
+            .trim();
 
-            const totalUsulan =
-                parseInt(
-                    col[col.length - 1]
-                    ?.replace(/"/g,"")
-                    ?.replace(/\./g,"")
-                ) || 0;
+        const totalUsulan =
+            parseInt(
+                col[13]
+                    ?.replace(/"/g, "")
+                    ?.replace(/,/g, "")
+            ) || 0;
 
-            const bayar =
-                parseInt(
-                    col[3]
-                    ?.replace(/"/g,"")
-                    ?.replace(/\./g,"")
-                ) || 0;
+        const bayar =
+            parseInt(
+                col[3]
+                    ?.replace(/"/g, "")
+                    ?.replace(/,/g, "")
+            ) || 0;
+
+        if (totalUsulan > 0) {
 
             labels.push(
-                bulan.replace(" 2026","")
+                bulan.replace(" 2026", "")
             );
 
             terimaBon.push(totalUsulan);
@@ -110,9 +102,15 @@ fetch(SHEET_URL)
             belumBayar.push(
                 totalUsulan - bayar
             );
-        }
-    });
 
+        }
+
+    }
+
+});
+
+console.log(labels);
+console.log(terimaBon);
     new Chart(ctx1, {
 
         type: "bar",
@@ -290,32 +288,5 @@ html2pdf()
         container.style.transform = oldTransform;
         container.style.width = oldWidth;
     });
-
-}
-const SHEET_URL =
-"https://docs.google.com/spreadsheets/d/e/2PACX-1vSQRRLWUNeyejio2KGt0R59cuBx8Pi5LaqpYKJeUV8oF9I5bmA_CxVzjMPg3CMbF4b0EGdXFND74OUe/pub?gid=920702944&single=true&output=csv";
-
-function downloadPDF() {
-
-```
-const container =
-    document.querySelector(".container");
-
-html2pdf()
-    .from(container)
-    .set({
-        margin: 0,
-        filename: "Dashboard_Tutup_Dinas_2026.pdf",
-        html2canvas: {
-            scale: 2
-        },
-        jsPDF: {
-            unit: "mm",
-            format: "a3",
-            orientation: "landscape"
-        }
-    })
-    .save();
-```
 
 }
