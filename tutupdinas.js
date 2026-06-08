@@ -191,3 +191,65 @@ html2pdf()
     });
 
 }
+const SHEET_URL =
+"https://docs.google.com/spreadsheets/d/e/2PACX-1vRr8R_L7SK3go995gTrx9UZUJMtUeyrCq1SLSrtYlN9HlZeHKFUODicrD_9cyr8H57EppczJ3ID7k4-/pub?output=csv";
+
+function parseNumber(value) {
+if (!value) return 0;
+
+```
+return Number(
+    value
+        .toString()
+        .replace(/\./g, "")
+        .replace(/,/g, ".")
+        .replace(/[^0-9.-]/g, "")
+) || 0;
+```
+
+}
+
+async function loadDashboard() {
+
+```
+document.getElementById("lastUpdate").textContent =
+    new Date().toLocaleString("id-ID");
+
+const response = await fetch(SHEET_URL);
+const csv = await response.text();
+
+console.log(csv);
+
+alert(
+    "CSV berhasil terbaca. Buka F12 > Console lalu kirim isi CSV ke ChatGPT agar mapping kolom bisa diselesaikan."
+);
+```
+
+}
+
+loadDashboard();
+
+function downloadPDF() {
+
+```
+const container =
+    document.querySelector(".container");
+
+html2pdf()
+    .from(container)
+    .set({
+        margin: 0,
+        filename: "Dashboard_Tutup_Dinas_2026.pdf",
+        html2canvas: {
+            scale: 2
+        },
+        jsPDF: {
+            unit: "mm",
+            format: "a3",
+            orientation: "landscape"
+        }
+    })
+    .save();
+```
+
+}
