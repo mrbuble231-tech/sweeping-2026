@@ -1,12 +1,16 @@
 document.getElementById("lastUpdate").textContent =
-    new Date().toLocaleString("id-ID");
+new Date().toLocaleString("id-ID");
 
 document.getElementById("totalTerima").textContent = "21.030";
 document.getElementById("totalBayar").textContent = "17.660";
 document.getElementById("potongPipa").textContent = "1.121";
-document.getElementById("angkatMeter").textContent = "1.525";
-document.getElementById("penangguhan").textContent = "257";
-document.getElementById("persentase").textContent = "84%";
+document.getElementById("angkatMeter").textContent = "1.519";
+document.getElementById("penangguhan").textContent = "45";
+document.getElementById("persentase").textContent = "83.98%";
+
+/* =========================
+CHART 1
+========================= */
 
 const ctx1 = document.getElementById("myChart").getContext("2d");
 
@@ -15,11 +19,18 @@ type: "bar",
 plugins: [ChartDataLabels],
 
 data: {
-    labels: ["Januari", "Februari", "Maret", "April", "Mei"],
+    labels: [
+        "Januari",
+        "Februari",
+        "Maret",
+        "April",
+        "Mei"
+    ],
+
     datasets: [
         {
             label: "Terima Bon",
-            data: [4238, 4133, 4526, 4434, 3696],
+            data: [4238, 4133, 4529, 4434, 3696],
             backgroundColor: "#22c55e"
         },
         {
@@ -44,7 +55,11 @@ options: {
             color: "#000",
             anchor: "end",
             align: "top",
-            formatter: value => value.toLocaleString("id-ID")
+            font: {
+                weight: "bold"
+            },
+            formatter: value =>
+                value.toLocaleString("id-ID")
         },
 
         title: {
@@ -56,6 +71,10 @@ options: {
 
 });
 
+/* =========================
+CHART 2
+========================= */
+
 const ctx2 = document.getElementById("myChart2").getContext("2d");
 
 new Chart(ctx2, {
@@ -63,12 +82,18 @@ type: "bar",
 plugins: [ChartDataLabels],
 
 data: {
-    labels: ["Januari", "Februari", "Maret", "April", "Mei"],
+    labels: [
+        "Januari",
+        "Februari",
+        "Maret",
+        "April",
+        "Mei"
+    ],
 
     datasets: [
         {
             label: "Angkat Meter",
-            data: [309, 275, 287, 342, 312],
+            data: [303, 275, 287, 342, 312],
             backgroundColor: "#f97316"
         },
         {
@@ -108,7 +133,11 @@ options: {
             color: "#000",
             anchor: "end",
             align: "top",
-            formatter: value => value.toLocaleString("id-ID")
+            font: {
+                weight: "bold"
+            },
+            formatter: value =>
+                value.toLocaleString("id-ID")
         },
 
         title: {
@@ -120,34 +149,39 @@ options: {
 
 });
 
+/* =========================
+DOWNLOAD PDF
+========================= */
+
 function downloadPDF() {
 
-    const container = document.querySelector(".container");
+const container = document.querySelector(".container");
 
-    const oldTransform = container.style.transform;
-    const oldWidth = container.style.width;
+const oldTransform = container.style.transform;
+const oldWidth = container.style.width;
 
-    container.style.width = "1000px";
-    container.style.transform = "scale(0.85)";
-    container.style.transformOrigin = "top left";
+container.style.width = "1000px";
+container.style.transform = "scale(0.85)";
+container.style.transformOrigin = "top left";
 
-    html2pdf()
-        .from(container)
-        .set({
-            margin: 0,
-            filename: "Dashboard_Tutup_Dinas_2026.pdf",
-            html2canvas: {
-                scale: 2
-            },
-            jsPDF: {
-                unit: "mm",
-                format: "a3",
-                orientation: "landscape"
-            }
-        })
-        .save()
-        .then(() => {
-            container.style.transform = oldTransform;
-            container.style.width = oldWidth;
-        });
+html2pdf()
+    .from(container)
+    .set({
+        margin: 0,
+        filename: "Dashboard_Tutup_Dinas_2026.pdf",
+        html2canvas: {
+            scale: 2
+        },
+        jsPDF: {
+            unit: "mm",
+            format: "a3",
+            orientation: "landscape"
+        }
+    })
+    .save()
+    .then(() => {
+        container.style.transform = oldTransform;
+        container.style.width = oldWidth;
+    });
+
 }
