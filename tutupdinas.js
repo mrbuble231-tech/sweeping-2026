@@ -20,60 +20,128 @@ CHART 1
 
 const ctx1 = document.getElementById("myChart").getContext("2d");
 
-new Chart(ctx1, {
-type: "bar",
-plugins: [ChartDataLabels],
+fetch(SHEET_URL)
+.then(response => response.text())
+.then(csv => {
 
-data: {
-    labels: [
-        "Januari",
-        "Februari",
-        "Maret",
-        "April",
-        "Mei"
-    ],
+    const rows = csv.split("\n");
 
-    datasets: [
-        {
-            label: "Terima Bon",
-            data: [4238, 4133, 4529, 4434, 3696],
-            backgroundColor: "#22c55e"
-        },
-        {
-            label: "Realisasi Bayar",
-            data: [3555, 3476, 3747, 3809, 3078],
-            backgroundColor: "#2563eb"
-        },
-        {
-            label: "Belum Bayar",
-            data: [683, 657, 779, 625, 618],
-            backgroundColor: "#dc2626"
+    const labels = [];
+    const terimaBon = [];
+    const realisasiBayar = [];
+    const belumBayar = [];
+
+    rows.forEach(row => {
+
+        if (
+            row.includes("Januari") ||
+            row.includes("Februari") ||
+            row.includes("Maret") ||
+            row.includes("April") ||
+            row.includes("Mei") ||
+            row.includes("Juni") ||
+            row.includes("Juli") ||
+            row.includes("Agustus") ||
+            row.includes("September") ||
+            row.includes("Oktober") ||
+            row.includes("November") ||
+            row.includes("Desember")
+        ) {
+
+            const col = row.split(",");
+
+            const bulan = col[1]?.replace(/"/g,"").trim();
+
+            const totalUsulan =
+                parseInt(
+                    col[col.length - 1]
+                    ?.replace(/"/g,"")
+                    ?.replace(/\./g,"")
+                ) || 0;
+
+            const bayar =
+                parseInt(
+                    col[3]
+                    ?.replace(/"/g,"")
+                    ?.replace(/\./g,"")
+                ) || 0;
+
+            labels.push(
+                bulan.replace(" 2026","")
+            );
+
+            terimaBon.push(totalUsulan);
+
+            realisasiBayar.push(bayar);
+
+            belumBayar.push(
+                totalUsulan - bayar
+            );
         }
-    ]
-},
+    });
 
-options: {
-    responsive: true,
-    maintainAspectRatio: false,
+    new Chart(ctx1, {
 
-    plugins: {
-        datalabels: {
-            color: "#000",
-            anchor: "end",
-            align: "top",
-            font: {
-                weight: "bold"
-            },
-            formatter: value =>
-                value.toLocaleString("id-ID")
+        type: "bar",
+
+        plugins: [ChartDataLabels],
+
+        data: {
+
+            labels: labels,
+
+            datasets: [
+                {
+                    label: "Terima Bon",
+                    data: terimaBon,
+                    backgroundColor: "#22c55e"
+                },
+                {
+                    label: "Realisasi Bayar",
+                    data: realisasiBayar,
+                    backgroundColor: "#2563eb"
+                },
+                {
+                    label: "Belum Bayar",
+                    data: belumBayar,
+                    backgroundColor: "#dc2626"
+                }
+            ]
         },
 
-        title: {
-            display: true,
-            text: "Monitoring Terima Bon, Realisasi Bayar & Belum Bayar"
+        options: {
+
+            responsive: true,
+            maintainAspectRatio: false,
+
+            plugins: {
+
+                datalabels: {
+
+                    color: "#000",
+
+                    anchor: "end",
+
+                    align: "top",
+
+                    font: {
+                        weight: "bold"
+                    },
+
+                    formatter: value =>
+                        value.toLocaleString("id-ID")
+                },
+
+                title: {
+
+                    display: true,
+
+                    text:
+                    "Monitoring Terima Bon, Realisasi Bayar & Belum Bayar"
+                }
+            }
         }
-    }
-}
+    });
 
 });
 
