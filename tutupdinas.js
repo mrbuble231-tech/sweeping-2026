@@ -54,49 +54,55 @@ fetch(SHEET_URL)
 
     rows.forEach(row => {
 
-        if (
-            row.includes("Januari") ||
-            row.includes("Februari") ||
-            row.includes("Maret") ||
-            row.includes("April") ||
-            row.includes("Mei") ||
-            row.includes("Juni") ||
-            row.includes("Juli") ||
-            row.includes("Agustus") ||
-            row.includes("September") ||
-            row.includes("Oktober") ||
-            row.includes("November") ||
-            row.includes("Desember")
-        ) {
+    console.log(row);
 
+    if (
+        row.includes("Januari") ||
+        row.includes("Februari") ||
+        row.includes("Maret") ||
+        row.includes("April") ||
+        row.includes("Mei") ||
+        row.includes("Juni") ||
+        row.includes("Juli") ||
+        row.includes("Agustus") ||
+        row.includes("September") ||
+        row.includes("Oktober") ||
+        row.includes("November") ||
+        row.includes("Desember")
+    ) {
             const col = row.match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g);
 
+if (!col) return;
+            console.log("BULAN =", col[1]);
+console.log("BAYAR =", col[3]);
+console.log("TERIMA =", col[13]);
             if (!col) return;
 
             const bulan = col[1]
                 ?.replace(/"/g, "")
                 .trim();
 
-            const totalUsulan =
-                parseInt(
-                    col[13]
-                        ?.replace(/"/g, "")
-                        ?.replace(/,/g, "")
-                ) || 0;
+            
+ const totalUsulan =
+parseInt(
+    col[2]
+        ?.replace(/"/g,"")
+        ?.replace(/,/g,"")
+) || 0;
 
-            const bayar =
-                parseInt(
-                    col[3]
-                        ?.replace(/"/g, "")
-                        ?.replace(/,/g, "")
-                ) || 0;
+const bayar =
+parseInt(
+    col[4]
+        ?.replace(/"/g,"")
+        ?.replace(/,/g,"")
+) || 0;
 
-            const belum = totalUsulan - bayar;
+const belum = totalUsulan - bayar;
 
-            labels.push(bulan);
-            terimaBon.push(totalUsulan);
-            realisasiBayar.push(bayar);
-            belumBayar.push(belum);
+labels.push(bulan);
+terimaBon.push(totalUsulan);
+realisasiBayar.push(bayar);
+belumBayar.push(belum);
 
         }
 
