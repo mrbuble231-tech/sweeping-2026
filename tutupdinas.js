@@ -69,48 +69,49 @@ fetch(SHEET_URL)
         row.includes("Desember")
     ) {
 
-        const col = row.match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g);
-
-        const bulan = col[1]
-            ?.replace(/"/g, "")
-            .trim();
-
-        const totalUsulan =
-            parseInt(
-                col[13]
-                    ?.replace(/"/g, "")
-                    ?.replace(/,/g, "")
-            ) || 0;
-
-        const bayar =
-            parseInt(
-                col[3]
-                    ?.replace(/"/g, "")
-                    ?.replace(/,/g, "")
-            ) || 0;
-
-        if (totalUsulan > 0) {
-
-            labels.push(
-                bulan.replace(" 2026", "")
-            );
-
-            terimaBon.push(totalUsulan);
-
-            realisasiBayar.push(bayar);
-
-            belumBayar.push(
-                totalUsulan - bayar
-            );
-
+        if (row.includes("Juni")) {
+            console.log("JUNI MASUK IF");
         }
+const bulan = col[1]
+    ?.replace(/"/g, "")
+    .trim();
+
+const col = row.match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g);
+
+const bulan = col[1]
+    ?.replace(/"/g, "")
+    .trim();
+
+const totalUsulan =
+    parseInt(
+        col[13]
+            ?.replace(/"/g, "")
+            ?.replace(/,/g, "")
+    ) || 0;
+
+const bayar =
+    parseInt(
+        col[3]
+            ?.replace(/"/g, "")
+            ?.replace(/,/g, "")
+    ) || 0;
+
+const belum = totalUsulan - bayar;
+
+labels.push(bulan);
+terimaBon.push(totalUsulan);
+realisasiBayar.push(bayar);
+belumBayar.push(belum);
 
     }
 
 });
 
-console.log(labels);
-console.log(terimaBon);
+});
+
+console.log("LABELS =", labels);
+console.log("TERIMA =", terimaBon);
+console.log("BAYAR =", realisasiBayar);
     new Chart(ctx1, {
 
         type: "bar",
@@ -173,9 +174,6 @@ console.log(terimaBon);
             }
         }
     });
-
-});
-
 /* =========================
 CHART 2
 ========================= */
