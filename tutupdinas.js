@@ -1,5 +1,5 @@
 const SHEET_URL =
-"https://docs.google.com/spreadsheets/d/e/2PACX-1vSQRRLWUNeyejio2KGt0R59cuBx8Pi5LaqpYKJeUV8oF9I5bmA_CxVzjMPg3CMbF4b0EGdXFND74OUe/pub?gid=920702944&single=true&output=csv";
+"https://docs.google.com/spreadsheets/d/e/2PACX-1vRr8R_L7SK3go995gTrx9UZUJMtUeyrCq1SLSrtYlN9HlZeHKFUODicrD_9cyr8H57EppczJ3ID7k4-/pub?gid=920702944&single=true&output=csv";
 
 function updateClock() {
     document.getElementById("lastUpdate").textContent =
@@ -54,64 +54,58 @@ fetch(SHEET_URL)
 
     rows.forEach(row => {
 
-    if (
-        row.includes("Januari") ||
-        row.includes("Februari") ||
-        row.includes("Maret") ||
-        row.includes("April") ||
-        row.includes("Mei") ||
-        row.includes("Juni") ||
-        row.includes("Juli") ||
-        row.includes("Agustus") ||
-        row.includes("September") ||
-        row.includes("Oktober") ||
-        row.includes("November") ||
-        row.includes("Desember")
-    ) {
+        if (
+            row.includes("Januari") ||
+            row.includes("Februari") ||
+            row.includes("Maret") ||
+            row.includes("April") ||
+            row.includes("Mei") ||
+            row.includes("Juni") ||
+            row.includes("Juli") ||
+            row.includes("Agustus") ||
+            row.includes("September") ||
+            row.includes("Oktober") ||
+            row.includes("November") ||
+            row.includes("Desember")
+        ) {
 
-        if (row.includes("Juni")) {
-            console.log("JUNI MASUK IF");
+            const col = row.match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g);
+
+            if (!col) return;
+
+            const bulan = col[1]
+                ?.replace(/"/g, "")
+                .trim();
+
+            const totalUsulan =
+                parseInt(
+                    col[13]
+                        ?.replace(/"/g, "")
+                        ?.replace(/,/g, "")
+                ) || 0;
+
+            const bayar =
+                parseInt(
+                    col[3]
+                        ?.replace(/"/g, "")
+                        ?.replace(/,/g, "")
+                ) || 0;
+
+            const belum = totalUsulan - bayar;
+
+            labels.push(bulan);
+            terimaBon.push(totalUsulan);
+            realisasiBayar.push(bayar);
+            belumBayar.push(belum);
+
         }
-const bulan = col[1]
-    ?.replace(/"/g, "")
-    .trim();
 
-const col = row.match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g);
+    });
 
-const bulan = col[1]
-    ?.replace(/"/g, "")
-    .trim();
+    console.log("LABELS =", labels);
+    console.log("TERIMA =", terimaBon);
+    console.log("BAYAR =", realisasiBayar);
 
-const totalUsulan =
-    parseInt(
-        col[13]
-            ?.replace(/"/g, "")
-            ?.replace(/,/g, "")
-    ) || 0;
-
-const bayar =
-    parseInt(
-        col[3]
-            ?.replace(/"/g, "")
-            ?.replace(/,/g, "")
-    ) || 0;
-
-const belum = totalUsulan - bayar;
-
-labels.push(bulan);
-terimaBon.push(totalUsulan);
-realisasiBayar.push(bayar);
-belumBayar.push(belum);
-
-    }
-
-});
-
-});
-
-console.log("LABELS =", labels);
-console.log("TERIMA =", terimaBon);
-console.log("BAYAR =", realisasiBayar);
     new Chart(ctx1, {
 
         type: "bar",
@@ -174,6 +168,13 @@ console.log("BAYAR =", realisasiBayar);
             }
         }
     });
+
+
+setInterval(() => {
+    location.reload();
+}, 300000);
+});
+
 /* =========================
 CHART 2
 ========================= */
