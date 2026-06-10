@@ -240,3 +240,87 @@ body{
     font-size:28px;
     font-weight:bold;
 }
+.news-container{
+    background:#061a3a;
+    color:white;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.header-news{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px;
+    background:#00112d;
+}
+
+.breaking{
+    background:red;
+    font-size:40px;
+    font-weight:bold;
+    padding:20px;
+}
+
+.title-news{
+    font-size:60px;
+    font-weight:bold;
+}
+
+.subtitle-news{
+    font-size:20px;
+}
+
+.developer{
+    text-align:right;
+}
+
+.content-news{
+    display:flex;
+    padding:20px;
+}
+
+.main-news{
+    width:70%;
+    position:relative;
+}
+
+.main-news img{
+    width:100%;
+    border-radius:15px;
+}
+
+.headline{
+    position:absolute;
+    left:0;
+    bottom:0;
+    width:100%;
+    background:rgba(0,0,0,.7);
+    padding:20px;
+}
+
+.headline span{
+    background:red;
+    padding:10px;
+}
+
+.side-news{
+    width:30%;
+    margin-left:20px;
+}
+
+.card-news{
+    display:flex;
+    margin-bottom:20px;
+    background:#0c2957;
+    border-radius:10px;
+    padding:10px;
+}
+
+.card-news img{
+    width:120px;
+    height:90px;
+    object-fit:cover;
+    border-radius:10px;
+    margin-right:10px;
+}
