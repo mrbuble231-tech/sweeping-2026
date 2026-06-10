@@ -71,7 +71,6 @@ fetch(SHEET_URL)
         row.includes("Desember")
     ) {
             const col = row.match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g);
-
 if (!col) return;
             console.log("BULAN =", col[1]);
 console.log("BAYAR =", col[3]);
@@ -187,77 +186,166 @@ CHART 2
 
 const ctx2 = document.getElementById("myChart2").getContext("2d");
 
-new Chart(ctx2, {
-type: "bar",
-plugins: [ChartDataLabels],
+fetch(SHEET_URL)
+.then(response => response.text())
+.then(csv => {
 
-data: {
-    labels: [
-        "Januari",
-        "Februari",
-        "Maret",
-        "April",
-        "Mei"
-    ],
+    const rows = csv.split("\n");
 
-    datasets: [
-        {
-            label: "Angkat Meter",
-            data: [303, 275, 287, 342, 312],
-            backgroundColor: "#f97316"
-        },
-        {
-            label: "Potong Pipa",
-            data: [232, 211, 239, 214, 225],
-            backgroundColor: "#fbbf24"
-        },
-        {
-            label: "PGL",
-            data: [103, 116, 167, 21, 51],
-            backgroundColor: "#06b6d4"
-        },
-        {
-            label: "TB",
-            data: [31, 38, 60, 11, 14],
-            backgroundColor: "#8b5cf6"
-        },
-        {
-            label: "PK",
-            data: [16, 14, 28, 6, 2],
-            backgroundColor: "#14b8a6"
-        },
-        {
-            label: "Penangguhan",
-            data: [0, 0, 0, 31, 14],
-            backgroundColor: "#ec4899"
-        }
-    ]
-},
+    const labels2 = [];
 
-options: {
-    responsive: true,
-    maintainAspectRatio: false,
+    const am = [];
+    const pp = [];
+    const tb = [];
+    const pk = [];
+    const pgl = [];
+    const rbk = [];
+    const penangguhan = [];
 
-    plugins: {
-        datalabels: {
-            color: "#000",
-            anchor: "end",
-            align: "top",
-            font: {
-                weight: "bold"
-            },
-            formatter: value =>
-                value.toLocaleString("id-ID")
-        },
+    rows.forEach(row => {
 
-        title: {
-            display: true,
-            text: "Realisasi Belum Bayar"
-        }
-    }
+    const col = row.match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g);
+
+if (!col) return;
+if (
+    !col[5] &&
+    !col[6] &&
+    !col[7] &&
+    !col[8] &&
+    !col[9] &&
+    !col[10] &&
+    !col[11]
+) return;
+
+        if (
+    row.includes("Januari") ||
+    row.includes("Februari") ||
+    row.includes("Maret") ||
+    row.includes("April") ||
+    row.includes("Mei") ||
+    row.includes("Juni") ||
+    row.includes("Juli") ||
+    row.includes("Agustus") ||
+    row.includes("September") ||
+    row.includes("Oktober") ||
+    row.includes("November") ||
+    row.includes("Desember")
+) {
+
+    labels2.push(col[1]?.replace(/"/g, "").trim());
+
+    am.push(parseInt(col[5]?.replace(/,/g, "")) || 0);
+    pp.push(parseInt(col[6]?.replace(/,/g, "")) || 0);
+    tb.push(parseInt(col[7]?.replace(/,/g, "")) || 0);
+    pk.push(parseInt(col[8]?.replace(/,/g, "")) || 0);
+    pgl.push(parseInt(col[9]?.replace(/,/g, "")) || 0);
+    rbk.push(parseInt(col[10]?.replace(/,/g, "")) || 0);
+    penangguhan.push(parseInt(col[11]?.replace(/,/g, "")) || 0);
+
 }
 
+    });
+
+    new Chart(ctx2, {
+
+    type: "bar",
+
+    plugins: [ChartDataLabels],
+
+    data: {
+
+        labels: labels2,
+
+        datasets: [
+
+            {
+                label: "Angkat Meter",
+                data: am,
+                backgroundColor: "#f97316"
+            },
+
+            {
+                label: "Potong Pipa",
+                data: pp,
+                backgroundColor: "#fbbf24"
+            },
+
+            {
+                label: "TB",
+                data: tb,
+                backgroundColor: "#8b5cf6"
+            },
+
+            {
+                label: "PK",
+                data: pk,
+                backgroundColor: "#14b8a6"
+            },
+
+            {
+                label: "PGL",
+                data: pgl,
+                backgroundColor: "#06b6d4"
+            },
+
+            {
+                label: "RBK",
+                data: rbk,
+                backgroundColor: "#64748b"
+            },
+
+            {
+                label: "Penangguhan",
+                data: penangguhan,
+                backgroundColor: "#ec4899"
+            }
+
+        ]
+
+    },
+
+    options: {
+
+        responsive: true,
+        maintainAspectRatio: false,
+
+        plugins: {
+
+            datalabels: {
+
+                color: "#000",
+
+                anchor: "end",
+
+                align: "top",
+
+                font: {
+                    weight: "bold"
+                },
+
+                formatter: value =>
+                    value.toLocaleString("id-ID")
+
+            },
+
+            title: {
+
+                display: true,
+
+                text:
+                "Monitoring Angkat Meter, Potong Pipa, TB, PK, PGL, RBK & Penangguhan"
+
+            }
+
+        }
+
+    }
+
 });
+    
+
+});
+
 
 /* =========================
 DOWNLOAD PDF
