@@ -180,7 +180,11 @@ setInterval(() => {
     location.reload();
 }, 300000);
 });
+setInterval(() => {
 
+    location.reload();
+
+}, 120000);
 /* =========================
 CHART 2
 ========================= */
@@ -389,6 +393,11 @@ fetch(SHEET_URL)
     });
 
 });
+setInterval(() => {
+
+    location.reload();
+
+}, 120000);
 /* =========================
 DOWNLOAD PDF
 ========================= */
