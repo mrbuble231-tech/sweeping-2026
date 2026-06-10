@@ -178,7 +178,7 @@ belumBayar.push(belum);
 
 setInterval(() => {
     location.reload();
-}, 300000);
+}, 120000);
 });
 
 /* =========================
