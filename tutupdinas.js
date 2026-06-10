@@ -184,81 +184,211 @@ setInterval(() => {
 /* =========================
 CHART 2
 ========================= */
-
+alert("CHART 2 BARU");
 const ctx2 = document.getElementById("myChart2").getContext("2d");
 
-new Chart(ctx2, {
-type: "bar",
-plugins: [ChartDataLabels],
+fetch(SHEET_URL)
+.then(response => response.text())
+.then(csv => {
 
-data: {
-    labels: [
-        "Januari",
-        "Februari",
-        "Maret",
-        "April",
-        "Mei"
-    ],
+    const rows = csv.split("\n");
 
-    datasets: [
-        {
-            label: "Angkat Meter",
-            data: [303, 275, 287, 342, 312],
-            backgroundColor: "#f97316"
-        },
-        {
-            label: "Potong Pipa",
-            data: [232, 211, 239, 214, 225],
-            backgroundColor: "#fbbf24"
-        },
-        {
-            label: "PGL",
-            data: [103, 116, 167, 21, 51],
-            backgroundColor: "#06b6d4"
-        },
-        {
-            label: "TB",
-            data: [31, 38, 60, 11, 14],
-            backgroundColor: "#8b5cf6"
-        },
-        {
-            label: "PK",
-            data: [16, 14, 28, 6, 2],
-            backgroundColor: "#14b8a6"
-        },
-        {
-            label: "Penangguhan",
-            data: [0, 0, 0, 31, 14],
-            backgroundColor: "#ec4899"
+    const labels2 = [];
+
+    const am = [];
+    const pp = [];
+    const tb = [];
+    const pk = [];
+    const pgl = [];
+    const rbk = [];
+    const penangguhan = [];
+
+    rows.forEach(row => {
+
+        if (
+            row.includes("Januari") ||
+            row.includes("Februari") ||
+            row.includes("Maret") ||
+            row.includes("April") ||
+            row.includes("Mei") ||
+            row.includes("Juni") ||
+            row.includes("Juli") ||
+            row.includes("Agustus") ||
+            row.includes("September") ||
+            row.includes("Oktober") ||
+            row.includes("November") ||
+            row.includes("Desember")
+        ) {
+
+            const col = row.match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g);
+
+            if (!col) return;
+
+            const bulan = col[1]
+                ?.replace(/"/g, "")
+                .replace(" 2026", "")
+                .trim();
+
+            labels2.push(bulan);
+
+            am.push(
+                parseInt(
+                    col[5]
+                        ?.replace(/"/g, "")
+                        ?.replace(/,/g, "")
+                ) || 0
+            );
+
+            pp.push(
+                parseInt(
+                    col[6]
+                        ?.replace(/"/g, "")
+                        ?.replace(/,/g, "")
+                ) || 0
+            );
+
+            tb.push(
+                parseInt(
+                    col[7]
+                        ?.replace(/"/g, "")
+                        ?.replace(/,/g, "")
+                ) || 0
+            );
+
+            pk.push(
+                parseInt(
+                    col[8]
+                        ?.replace(/"/g, "")
+                        ?.replace(/,/g, "")
+                ) || 0
+            );
+
+            pgl.push(
+                parseInt(
+                    col[9]
+                        ?.replace(/"/g, "")
+                        ?.replace(/,/g, "")
+                ) || 0
+            );
+
+            rbk.push(
+                parseInt(
+                    col[10]
+                        ?.replace(/"/g, "")
+                        ?.replace(/,/g, "")
+                ) || 0
+            );
+
+            penangguhan.push(
+                parseInt(
+                    col[11]
+                        ?.replace(/"/g, "")
+                        ?.replace(/,/g, "")
+                ) || 0
+            );
+
         }
-    ]
-},
 
-options: {
-    responsive: true,
-    maintainAspectRatio: false,
+    });
 
-    plugins: {
-        datalabels: {
-            color: "#000",
-            anchor: "end",
-            align: "top",
-            font: {
-                weight: "bold"
-            },
-            formatter: value =>
-                value.toLocaleString("id-ID")
+    new Chart(ctx2, {
+
+        type: "bar",
+
+        plugins: [ChartDataLabels],
+
+        data: {
+
+            labels: labels2,
+
+            datasets: [
+
+                {
+                    label: "Angkat Meter",
+                    data: am,
+                    backgroundColor: "#f97316"
+                },
+
+                {
+                    label: "Potong Pipa",
+                    data: pp,
+                    backgroundColor: "#fbbf24"
+                },
+
+                {
+                    label: "PGL",
+                    data: pgl,
+                    backgroundColor: "#06b6d4"
+                },
+
+                {
+                    label: "TB",
+                    data: tb,
+                    backgroundColor: "#8b5cf6"
+                },
+
+                {
+                    label: "PK",
+                    data: pk,
+                    backgroundColor: "#14b8a6"
+                },
+
+                {
+                    label: "RBK",
+                    data: rbk,
+                    backgroundColor: "#64748b"
+                },
+
+                {
+                    label: "Penangguhan",
+                    data: penangguhan,
+                    backgroundColor: "#ec4899"
+                }
+
+            ]
+
         },
 
-        title: {
-            display: true,
-            text: "Realisasi Belum Bayar"
+        options: {
+
+            responsive: true,
+
+            maintainAspectRatio: false,
+
+            plugins: {
+
+                datalabels: {
+
+                    color: "#000",
+
+                    anchor: "end",
+
+                    align: "top",
+
+                    font: {
+                        weight: "bold"
+                    },
+
+                    formatter: value =>
+                        value.toLocaleString("id-ID")
+                },
+
+                title: {
+
+                    display: true,
+
+                    text:
+                    "Monitoring Angkat Meter, Potong Pipa, TB, PK, PGL, RBK & Penangguhan"
+
+                }
+
+            }
+
         }
-    }
-}
+
+    });
 
 });
-
 /* =========================
 DOWNLOAD PDF
 ========================= */
