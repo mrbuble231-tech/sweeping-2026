@@ -291,7 +291,7 @@ if (
             {
                 label: "RBK",
                 data: rbk,
-                backgroundColor: "#64748b"
+                backgroundColor: "#000000"
             },
 
             {
