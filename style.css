@@ -241,7 +241,7 @@ body{
     font-weight:bold;
 }
 .news-container{
-    background:#061a3a;
+    background:#3a0606;
     color:white;
     border-radius:20px;
     overflow:hidden;
@@ -251,8 +251,8 @@ body{
     display:flex;
     justify-content:space-between;
     align-items:center;
+    background:#00153b;
     padding:20px;
-    background:#00112d;
 }
 
 .breaking{
@@ -281,49 +281,372 @@ body{
 }
 
 .main-news{
-    width:70%;
-    position:relative;
+    background:#010b19;
+    border:1px solid #1146b5;
+    border-radius:10px;
+    padding:15px;
+
+    display:flex;
+    gap:20px;
 }
 
+.main-news{
+    display:flex;
+    gap:30px;
+    background:#010915;
+    border:1px solid #1146b5;
+    border-radius:10px;
+    padding:20px;
+}
 .main-news img{
-    width:100%;
-    border-radius:15px;
+    width:48%;
+    height:500px;
+    object-fit:cover;
+    border-radius:10px;
 }
 
 .headline{
-    position:absolute;
-    left:0;
-    bottom:0;
-    width:100%;
-    background:rgba(0,0,0,.7);
-    padding:20px;
+    width:52%;
 }
 
 .headline span{
     background:red;
-    padding:10px;
+    color:white;
+    padding:8px 15px;
+    font-size:14px;
+    font-weight:bold;
 }
 
-.side-news{
-    width:30%;
-    margin-left:20px;
+.headline h1{
+
+    color:white;
+
+    font-size:78px;
+
+    line-height:1.05;
+
+    text-transform:uppercase;
+
+    text-shadow:
+        0 0 10px white,
+        0 0 20px rgba(255,255,255,.5);
+
 }
 
+
+.headline p{
+    color:white;
+    font-size:26px;
+    line-height:1.6;
+}
+.top-news h2{
+    color:white;
+
+    text-shadow:
+        0 0 10px white,
+        0 0 20px #008cff;
+
+    font-size:42px;
+}
 .card-news{
     display:flex;
-    margin-bottom:20px;
-    background:#0c2957;
-    border-radius:10px;
-    padding:10px;
+    align-items:center;
+    background:#123066;
+    border-radius:15px;
+    padding:15px;
+    margin-bottom:15px;
 }
 
 .card-news img{
-    width:120px;
-    height:90px;
+    width:110px;
+    height:70px;
     object-fit:cover;
     border-radius:10px;
-    margin-right:10px;
+    margin-right:15px;
 }
 body{
     background:#071f45;
+}
+.main-news{
+    display:flex;
+    align-items:center;
+    gap:30px;
+    background:#02101f;
+    padding:20px;
+}
+
+.main-news img{
+    width:42%;
+    height:380px;
+    object-fit:cover;
+    border-radius:15px;
+}
+.card-news:hover{
+    transform:scale(1.02);
+    transition:0.3s;
+}
+.clock-box{
+    color:white;
+    text-align:center;
+    border:1px solid #0d4dff;
+    border-radius:10px;
+    padding:15px;
+    min-width:170px;
+}
+
+#tanggal{
+    font-size:18px;
+    margin-bottom:10px;
+}
+
+#jam{
+    font-size:42px;
+    font-family:monospace;
+    font-weight:bold;
+}
+
+.wib{
+    font-size:18px;
+}
+.status-operasi{
+    display:flex;
+    justify-content:center;
+    gap:25px;
+    padding:15px 0;
+    background:red;
+    flex-wrap:wrap;
+}
+.side-news h2{
+    color:white;
+    margin-bottom:15px;
+    font-size:20px;
+}
+.kpi-container{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+    padding:25px;
+}
+
+.kpi-card{
+    width:180px;
+    border-radius:15px;
+    padding:20px;
+    text-align:center;
+    color:white;
+    box-shadow:0 0 15px rgba(0,0,0,0.4);
+    text-shadow:
+    0 0 10px white,
+    0 0 25px rgba(255,255,255,.6);
+}
+
+.kpi-title{
+    font-size:18px;
+    font-weight:bold;
+}
+
+.kpi-value{
+    margin-top:15px;
+    font-size:40px;
+    font-weight:bold;
+}
+.am{
+    background:#f97316;
+}
+
+.pp{
+    background:#dc2626;
+}
+
+.tb{
+    background:#8b5cf6;
+}
+
+.pk{
+    background:#14b8a6;
+}
+
+.pgl{
+    background:#2563eb;
+}
+
+.tunda{
+    background:#ec4899;
+}
+.content-news{
+    display:flex;
+    gap:20px;
+    padding:20px;
+}
+
+.left-panel{
+    width:65%;
+}
+
+.right-panel{
+    width:35%;
+}
+.realisasi-box{
+    margin:20px;
+    background:#08111f;
+    border:1px solid #1f5eff;
+    border-radius:10px;
+    padding:20px;
+}
+
+.realisasi-box h2{
+    color:white;
+    margin-bottom:20px;
+}
+
+.realisasi-grid{
+    display:flex;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+.real-card{
+    width:170px;
+    text-align:center;
+    color:white;
+    padding:20px;
+    border-radius:10px;
+}
+
+.real-card h1{
+    font-size:55px;
+    margin-top:10px;
+    margin-bottom:10px;
+}
+.status-operasi{
+    background:#ff0000;
+    padding:15px;
+    display:flex;
+    justify-content:center;
+    gap:30px;
+    flex-wrap:wrap;
+}
+
+.status-card{
+    width:280px;
+    background:#05142d;
+    border:1px solid #0f6cff;
+    border-radius:12px;
+    padding:20px;
+
+    display:flex;
+    align-items:center;
+    gap:20px;
+}
+
+.status-icon{
+    font-size:40px;
+}
+
+.status-card span{
+    color:#bcbcbc;
+    font-size:14px;
+}
+
+.status-card h2{
+    color:white;
+    margin-top:8px;
+}
+
+.running-news{
+    background: #000;
+    height: 45px;
+    line-height: 45px;
+    overflow: hidden;
+    border-top: 2px solid #ff0000;
+    border-bottom: 2px solid #ff0000;
+}
+
+.running-news marquee{
+    color: #ffffff !important;
+    font-size: 24px;
+    font-weight: bold;
+}
+.running-text{
+    color:white !important;
+    font-size:26px !important;
+    font-weight:bold !important;
+
+    text-shadow:
+        0 0 5px #ffffff,
+        0 0 10px red,
+        0 0 20px red !important;
+}
+/* ========================= */
+/* TOTAL REALISASI */
+/* ========================= */
+
+.total-panel{
+    width:420px;
+    background:#031428;
+    border:2px solid #0088ff;
+    border-radius:12px;
+    padding:20px;
+    margin-top:0px;
+
+    box-shadow:
+    0 0 10px #0088ff;
+}
+
+.total-panel h2{
+    color:white;
+    font-size:34px;
+    margin-bottom:20px;
+}
+
+.total-angka{
+    font-size:100px;
+    color:#ffee00;
+    font-weight:bold;
+    line-height:1;
+}
+
+.total-pelanggan{
+    color:white;
+    font-size:45px;
+    font-weight:bold;
+    margin-top:10px;
+}
+
+.update-realisasi{
+    color:#cfcfcf;
+    margin-top:20px;
+    font-size:20px;
+}
+
+.grafik-naik{
+    text-align:right;
+    font-size:120px;
+}
+/* PANEL GLOW */
+
+.main-news,
+.side-news,
+.kpi-container,
+.total-panel,
+.top-news{
+    box-shadow:
+        0 0 5px #008cff,
+        0 0 15px rgba(0,140,255,.5);
+
+    border:1px solid #008cff;
+}
+.label-news{
+
+    background:red;
+
+    color:white;
+
+    font-weight:bold;
+
+    box-shadow:
+        0 0 10px red,
+        0 0 20px rgba(255,0,0,.6);
+
 }
