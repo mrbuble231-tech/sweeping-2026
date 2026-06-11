@@ -434,3 +434,145 @@ html2pdf()
     });
 
 }
+/* =========================
+TOTAL KPI OTOMATIS
+========================= */
+
+fetch(SHEET_URL)
+.then(response => response.text())
+.then(csv => {
+
+    const rows = csv.split("\n");
+
+    let totalAM = 0;
+    let totalPP = 0;
+    let totalTB = 0;
+    let totalPK = 0;
+    let totalPGL = 0;
+    let totalPNG = 0;
+
+    rows.forEach(row => {
+
+        if (
+            row.includes("Januari") ||
+            row.includes("Februari") ||
+            row.includes("Maret") ||
+            row.includes("April") ||
+            row.includes("Mei") ||
+            row.includes("Juni") ||
+            row.includes("Juli") ||
+            row.includes("Agustus") ||
+            row.includes("September") ||
+            row.includes("Oktober") ||
+            row.includes("November") ||
+            row.includes("Desember")
+        ) {
+
+            const col = row.match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g);
+
+            if (!col) return;
+
+            totalAM += parseInt(col[5]?.replace(/"/g,"")?.replace(/,/g,"")) || 0;
+
+            totalPP += parseInt(col[6]?.replace(/"/g,"")?.replace(/,/g,"")) || 0;
+
+            totalTB += parseInt(col[7]?.replace(/"/g,"")?.replace(/,/g,"")) || 0;
+
+            totalPK += parseInt(col[8]?.replace(/"/g,"")?.replace(/,/g,"")) || 0;
+
+            totalPGL += parseInt(col[9]?.replace(/"/g,"")?.replace(/,/g,"")) || 0;
+
+            totalPNG += parseInt(col[11]?.replace(/"/g,"")?.replace(/,/g,"")) || 0;
+
+        }
+
+    });
+
+    // KPI Dashboard
+    document.getElementById("angkatMeter").textContent =
+        totalAM.toLocaleString("id-ID");
+
+    document.getElementById("potongPipa").textContent =
+        totalPP.toLocaleString("id-ID");
+
+    document.getElementById("tb").textContent =
+        totalTB.toLocaleString("id-ID");
+
+    document.getElementById("pk").textContent =
+        totalPK.toLocaleString("id-ID");
+
+    document.getElementById("pgl").textContent =
+        totalPGL.toLocaleString("id-ID");
+
+    document.getElementById("penangguhan").textContent =
+        totalPNG.toLocaleString("id-ID");
+
+});
+/* =========================
+TOTAL KPI OTOMATIS
+========================= */
+
+fetch(SHEET_URL)
+.then(response => response.text())
+.then(csv => {
+
+    const rows = csv.split("\n");
+
+    let totalAM = 0;
+    let totalPP = 0;
+    let totalTB = 0;
+    let totalPK = 0;
+    let totalPGL = 0;
+    let totalPNG = 0;
+
+    rows.forEach(row => {
+
+        if (
+            row.includes("Januari") ||
+            row.includes("Februari") ||
+            row.includes("Maret") ||
+            row.includes("April") ||
+            row.includes("Mei") ||
+            row.includes("Juni") ||
+            row.includes("Juli") ||
+            row.includes("Agustus") ||
+            row.includes("September") ||
+            row.includes("Oktober") ||
+            row.includes("November") ||
+            row.includes("Desember")
+        ) {
+
+            const col = row.match(/(".*?"|[^",]+)(?=\\s*,|\\s*$)/g);
+
+            if (!col) return;
+
+            totalAM += parseInt(col[5]?.replace(/"/g,"")?.replace(/,/g,"")) || 0;
+            totalPP += parseInt(col[6]?.replace(/"/g,"")?.replace(/,/g,"")) || 0;
+            totalTB += parseInt(col[7]?.replace(/"/g,"")?.replace(/,/g,"")) || 0;
+            totalPK += parseInt(col[8]?.replace(/"/g,"")?.replace(/,/g,"")) || 0;
+            totalPGL += parseInt(col[9]?.replace(/"/g,"")?.replace(/,/g,"")) || 0;
+            totalPNG += parseInt(col[11]?.replace(/"/g,"")?.replace(/,/g,"")) || 0;
+
+        }
+
+    });
+
+    document.getElementById("angkatMeter").textContent =
+        totalAM.toLocaleString("id-ID");
+
+    document.getElementById("potongPipa").textContent =
+        totalPP.toLocaleString("id-ID");
+
+    document.getElementById("tb").textContent =
+        totalTB.toLocaleString("id-ID");
+
+    document.getElementById("pk").textContent =
+        totalPK.toLocaleString("id-ID");
+
+    document.getElementById("pgl").textContent =
+        totalPGL.toLocaleString("id-ID");
+
+    document.getElementById("penangguhan").textContent =
+        totalPNG.toLocaleString("id-ID");
+
+});

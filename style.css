@@ -650,3 +650,162 @@ body{
         0 0 20px rgba(255,0,0,.6);
 
 }
+/* POPUP BERITA */
+
+.popup{
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,.8);
+    z-index:9999;
+}
+
+.popup-content{
+
+    width:700px;
+
+    background:#001b47;
+
+    border:2px solid #00aaff;
+
+    margin:50px auto;
+
+    padding:25px;
+
+    border-radius:20px;
+
+    color:white;
+
+    box-shadow:0 0 30px #00aaff;
+}
+
+.popup-content img{
+
+    width:100%;
+
+    border-radius:15px;
+
+    margin:15px 0;
+}
+
+.close-btn{
+
+    float:right;
+
+    font-size:35px;
+
+    color:red;
+
+    cursor:pointer;
+}
+.popup{
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,.8);
+    z-index:9999;
+}
+
+.popup-content{
+
+    width:700px;
+
+    background:#001b47;
+
+    border:2px solid #00aaff;
+
+    margin:50px auto;
+
+    padding:25px;
+
+    border-radius:20px;
+
+    color:white;
+}
+
+.popup-content img{
+
+    width:100%;
+
+    border-radius:15px;
+
+}
+
+.close-btn{
+
+    float:right;
+
+    font-size:35px;
+
+    color:red;
+
+    cursor:pointer;
+
+}
+.slider{
+
+    position:relative;
+}
+
+.slider img{
+
+    width:100%;
+    border-radius:15px;
+}
+
+.prev,
+.next{
+
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    background:rgba(0,0,0,.5);
+    color:white;
+    border:none;
+    font-size:30px;
+    cursor:pointer;
+    padding:10px;
+    border-radius:50%;
+}
+
+.prev{
+
+    left:10px;
+}
+
+.next{
+
+    right:10px;
+}
+.foto-counter{
+
+    text-align:center;
+
+    color:white;
+
+    margin-top:10px;
+
+    font-size:14px;
+
+    opacity:0.8;
+
+}
+.foto-counter{
+
+    text-align:center;
+
+    color:white;
+
+    margin-top:10px;
+
+    font-size:14px;
+
+    opacity:.8;
+
+}

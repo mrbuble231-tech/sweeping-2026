@@ -1,47 +1,58 @@
-const SHEET_URL = "Lhttps://docs.google.com/spreadsheets/d/e/2PACX-1vT51R1B0w5xIRP2Ho92npB6jA6OindLCV_TD0ylsPsRMed2PWvcNJwblCFZQHuOqwszAgSYbX1qHNnl/pub?gid=0&single=true&output=csvINK_CSV_KAMU";
+const SHEET_URL =
+"https://docs.google.com/spreadsheets/d/e/2PACX-1vT51R1B0w5xIRP2Ho92npB6jA6OindLCV_TD0ylsPsRMed2PWvcNJwblCFZQHuOqwszAgSYbX1qHNnl/pub?gid=0&single=true&output=csv";
 
-// Ambil data dari Google Sheet
-fetch(SHEET_URL)
-.then(response => response.text())
-.then(csv => {
+Papa.parse(SHEET_URL, {
 
-    const rows = csv.split("\n");
+    download: true,
+    header: true,
 
-    // Headline
-    document.getElementById("headline1").innerHTML =
-        rows[0].split(",")[1];
+    complete: function(results){
+        console.log(results.data);
 
-    document.getElementById("headline2").innerHTML =
-        rows[1].split(",")[1];
+        let totalAM = 0;
+        let totalPP = 0;
+        let totalTB = 0;
+        let totalPK = 0;
+        let totalPGL = 0;
+        let totalPNG = 0;
 
-    document.getElementById("headline3").innerHTML =
-        rows[2].split(",")[1];
+        results.data.forEach(row => {
 
-    // Deskripsi
-    document.getElementById("deskripsi").innerHTML =
-        rows[3].split(",")[1];
+            totalAM += Number(row["AM"]) || 0;
+            totalPP += Number(row["PP"]) || 0;
+            totalTB += Number(row["TB"]) || 0;
+            totalPK += Number(row["PK"]) || 0;
+            totalPGL += Number(row["PGL"]) || 0;
+            totalPNG += Number(row["PENANGGUHAN"]) || 0;
 
-    // KPI
-    document.getElementById("am").innerHTML =
-        rows[4].split(",")[1];
+        });
 
-    document.getElementById("pp").innerHTML =
-        rows[5].split(",")[1];
+        document.getElementById("am").textContent =
+            totalAM.toLocaleString("id-ID");
 
-    document.getElementById("tb").innerHTML =
-        rows[6].split(",")[1];
+        document.getElementById("pp").textContent =
+            totalPP.toLocaleString("id-ID");
 
-    document.getElementById("pk").innerHTML =
-        rows[7].split(",")[1];
+        document.getElementById("tb").textContent =
+            totalTB.toLocaleString("id-ID");
 
-    document.getElementById("pgl").innerHTML =
-        rows[8].split(",")[1];
+        document.getElementById("pk").textContent =
+            totalPK.toLocaleString("id-ID");
 
-    document.getElementById("png").innerHTML =
-        rows[9].split(",")[1];
+        document.getElementById("pgl").textContent =
+            totalPGL.toLocaleString("id-ID");
+
+        document.getElementById("png").textContent =
+            totalPNG.toLocaleString("id-ID");
+
+    }
 
 });
 
+
+// =======================
+// JAM DIGITAL
+// =======================
 
 function updateClock(){
 
@@ -62,22 +73,145 @@ function updateClock(){
         "DESEMBER"
     ];
 
-    const tanggal =
-        now.getDate() +
-        " " +
-        bulan[now.getMonth()] +
-        " " +
+    document.getElementById("tanggal").innerHTML =
+        now.getDate() + " " +
+        bulan[now.getMonth()] + " " +
         now.getFullYear();
-
-    document.getElementById("tanggal").innerHTML = tanggal;
 
     document.getElementById("jam").innerHTML =
         now.toLocaleTimeString("id-ID");
+
 }
 
 setInterval(updateClock,1000);
 
 updateClock();
+
+
+// Refresh otomatis tiap 5 menit
 setInterval(() => {
+
     location.reload();
-}, 300000);
+
+},300000);
+// =========================
+// POPUP BERITA
+// =========================
+
+window.onload = function(){
+
+    const popup = document.getElementById("popupBerita");
+
+    const berita = document.getElementById("beritaUtama");
+
+    const closeBtn = document.querySelector(".close-btn");
+
+    berita.onclick = function(){
+
+        popup.style.display = "block";
+
+    };
+
+    closeBtn.onclick = function(){
+
+        popup.style.display = "none";
+
+    };
+
+};
+// =====================
+// POPUP BERITA
+// =====================
+
+const popup = document.getElementById("popupBerita");
+
+const berita = document.getElementById("beritaUtama");
+
+const closeBtn = document.querySelector(".close-btn");
+
+berita.onclick = function(){
+
+    popup.style.display = "block";
+
+};
+
+closeBtn.onclick = function(){
+
+    popup.style.display = "none";
+
+};
+
+// =====================
+// SLIDESHOW FOTO
+// =====================
+
+window.addEventListener("DOMContentLoaded", function(){
+
+    const images = [
+        "img/top1.jpeg",
+        "img/top2.jpeg",
+        "img/top3.jpeg"
+    ];
+
+    let currentImage = 0;
+
+    const popupImage = document.getElementById("popupImage");
+    const fotoCounter = document.getElementById("fotoCounter");
+    const nextBtn = document.getElementById("nextBtn");
+    const prevBtn = document.getElementById("prevBtn");
+
+    popupImage.src = images[currentImage];
+
+    fotoCounter.innerHTML =
+    "Foto " + (currentImage + 1) +
+    " dari " + images.length;
+
+
+    nextBtn.addEventListener("click", function(){
+
+        console.log("NEXT ditekan");
+
+        currentImage++;
+
+        if(currentImage >= images.length){
+            currentImage = 0;
+        }
+
+        popupImage.src = images[currentImage];
+
+        fotoCounter.innerHTML =
+        "Foto " + (currentImage + 1) +
+        " dari " + images.length;
+
+    });
+
+
+    prevBtn.addEventListener("click", function(){
+
+        currentImage--;
+
+        if(currentImage < 0){
+            currentImage = images.length - 1;
+        }
+
+        popupImage.src = images[currentImage];
+
+        fotoCounter.innerHTML =
+        "Foto " + (currentImage + 1) +
+        " dari " + images.length;
+
+    });
+
+});
+    currentImage--;
+
+    if(currentImage < 0){
+        currentImage = images.length - 1;
+    }
+
+    popupImage.src = images[currentImage];
+
+    fotoCounter.innerHTML =
+    "Foto " + (currentImage + 1) +
+    " dari " + images.length;
+

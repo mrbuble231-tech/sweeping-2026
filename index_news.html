@@ -124,7 +124,7 @@ Developed by RHINOCEROS 🦏
 </div>
 <!-- KONTEN -->
 
-<div class="headline">
+<div class="headline" id="beritaUtama">
 
     <span>BERITA UTAMA</span>
 
@@ -133,7 +133,7 @@ Developed by RHINOCEROS 🦏
     </h1>
 
     <h1 class="kuning" id="headline2">
-        METER AIR HILANG
+        PENCURIAN AIR DUA KALI
     </h1>
 
     <p id="deskripsi">
@@ -144,38 +144,36 @@ Developed by RHINOCEROS 🦏
 <div class="content-news">
 
     <!-- KOLOM KIRI -->
-    <div class="main-news">
+    <div class="main-news" id="beritaUtama">
 
-    <img id="fotoUtama" src="img/utama.jpeg">
+    <img id="fotoUtama" src="img/top1.jpeg">
 
     <div class="headline">
 
-        <span>BERITA UTAMA</span>
+     <div class="tags">
 
-        <h1>
+    <span>
+SAMBUNGAN ILEGAL DITEMUKAN • PELANGGARAN BERULANG •
+LOKASI SURABAYA SELATAN • STATUS : SELESAI DITERTIBKAN
+</span>
 
-    <span id="headline1">
-        DITEMUKAN KASUS
-    </span>
-
-    <br>
-
-    <span class="yellow" id="headline2">
-        PENCURIAN AIR
-    </span>
+</div>
 
     <br>
 
-    <span id="headline3">
-        METER AIR HILANG
-    </span>
-
+    
         <p>
-            Tim Penertiban 2026 berhasil menemukan
-            sambungan ilegal dan meter air hilang yang
-            menyebabkan kehilangan air serta potensi
-            kerugian perusahaan.
-        </p>
+
+TIM PENERTIBAN 2026 BERHASIL MENEMUKAN SAMBUNGAN ILEGAL
+DAN METER AIR HILANG YANG MENYEBABKAN KEHILANGAN AIR
+SERTA POTENSI KERUGIAN PERUSAHAAN.
+
+<br><br>
+
+PELANGGAN TERINDIKASI MELAKUKAN PELANGGARAN BERULANG
+DAN TELAH DILAKUKAN TINDAKAN PENERTIBAN SESUAI KETENTUAN.
+
+</p>
 
     </div>
     <div class="realisasi-box">
@@ -186,37 +184,37 @@ Developed by RHINOCEROS 🦏
 
         <div class="real-card am">
             <div>ANGKAT METER (AM)</div>
-          <h1 id="am">1.519</h1>
+          <h1 id="am">0</h1>
             <span>PELANGGAN</span>
         </div>
 
         <div class="real-card pp">
             <div>POTONG PIPA (PP)</div>
-           <h1 id="pp">1.121</h1>
+           <h1 id="pp"></h1>
             <span>PELANGGAN</span>
         </div>
 
         <div class="real-card tb">
             <div>TUTUP BOX (TB)</div>
-            <h1 id="tb">500</h1>
+            <h1 id="tb">0</h1>
             <span>PELANGGAN</span>
         </div>
 
         <div class="real-card pk">
             <div>PEMBONGKARAN (PK)</div>
-            <h1>650</h1>
+            <h1 id="pk">0</h1>
             <span>PELANGGAN</span>
         </div>
 
         <div class="real-card pgl">
             <div>PGL</div>
-            <h1 id="pgl">500</h1>
+            <h1 id="pgl">0</h1>
             <span>PELANGGAN</span>
         </div>
 
         <div class="real-card tunda">
             <div>PENANGGUHAN</div>
-            <h1 id="png">45</h1>
+            <h1 id="png">0</h1>
             <span>PELANGGAN</span>
         </div>
 
@@ -256,7 +254,7 @@ Developed by RHINOCEROS 🦏
 
             <div class="card-news">
 
-                <img src="img/top2.jpeg">
+                <img src="img/top1.jpeg">
 
                 <div>
 
@@ -278,7 +276,7 @@ Developed by RHINOCEROS 🦏
 
                 <div class="card-news">
 
-                <img src="img/top4.jpeg">
+                <img src="img/top1.jpeg">
 
                 <div>
 
@@ -301,8 +299,59 @@ Developed by RHINOCEROS 🦏
 </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+
 <script src="news.js"></script>
 
+<script src="kpi.js"></script>
+<!-- POPUP BERITA -->
+<!-- POPUP BERITA -->
+<div id="popupBerita" class="popup">
+
+    <div class="popup-content">
+
+        <span class="close-btn">&times;</span>
+
+        <h2>🚨 DITEMUKAN KASUS PENCURIAN AIR DUA KALI</h2>
+
+       <div class="slider">
+
+    <button id="prevBtn">&#10094;</button>
+
+    <img id="popupImage" src="img/top1.jpeg">
+
+    <button id="nextBtn">&#10095;</button>
+
+</div>
+
+<div id="fotoCounter" class="foto-counter">
+
+    Foto 1 dari 3
+
+</div>
+
+
+        <p>
+
+            Tim Penertiban 2026 berhasil menemukan indikasi pencurian air
+melalui sambungan ilegal dan ketidaksesuaian instalasi pelanggan.
+Kegiatan penertiban dilakukan untuk mengamankan aset perusahaan
+serta mencegah potensi kehilangan air dan kerugian operasional.
+
+
+            <br><br>
+
+            Lokasi : Surabaya Timur
+
+            <br>
+
+            Tanggal : 11 Juni 2026
+
+        </p>
+
+    </div>
+
+</div>
 </body>
 </html>
 <!-- TOTAL REALISASI -->
