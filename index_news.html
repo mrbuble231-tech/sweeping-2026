@@ -139,7 +139,40 @@ Developed by RHINOCEROS 🦏
     <p id="deskripsi">
         Tim Penertiban 2026 berhasil menemukan sambungan ilegal dan meter air hilang.
     </p>
+   <div class="chart-container">
 
+    <h2 class="chart-title">
+        📊 MONITORING REALISASI 2026
+    </h2>
+ <canvas id="myChartBulanan"></canvas>
+
+</div>
+
+    <h2 class="map-title">
+
+<div class="timeline">
+
+    <div class="step">
+        <b>08.15 WIB</b><br>
+        Temuan sambungan ilegal.
+    </div>
+
+    <div class="step">
+        <b>09.30 WIB</b><br>
+        Pemeriksaan lapangan dilakukan.
+    </div>
+
+    <div class="step">
+        <b>10.45 WIB</b><br>
+        Penertiban pelanggan dilaksanakan.
+    </div>
+
+    <div class="step">
+        <b>11.20 WIB</b><br>
+        Kasus selesai ditangani.
+    </div>
+
+</div>
 </div>
 <div class="content-news">
 
@@ -224,6 +257,7 @@ DAN TELAH DILAKUKAN TINDAKAN PENERTIBAN SESUAI KETENTUAN.
 
 </div>
 
+
     <!-- KOLOM KANAN -->
     <div class="right-panel">
 
@@ -233,7 +267,39 @@ DAN TELAH DILAKUKAN TINDAKAN PENERTIBAN SESUAI KETENTUAN.
         <div class="side-news">
 
             <h2>TOP NEWS</h2>
+<div class="weather-box">
 
+    <div class="weather-title">
+
+        🌤 CUACA SURABAYA
+
+    </div>
+
+    <div class="weather-main">
+
+        ☀ CERAH
+
+    </div>
+
+    <div class="weather-temp">
+
+        32°C
+
+    </div>
+
+    <div class="weather-info">
+
+        💧 Kelembaban : 75%
+
+    </div>
+
+    <div class="weather-info">
+
+        🌬 Angin : 8 km/h
+
+    </div>
+
+</div>
             <div class="card-news">
 
                 <img src="img/top1.jpeg">
@@ -305,7 +371,6 @@ DAN TELAH DILAKUKAN TINDAKAN PENERTIBAN SESUAI KETENTUAN.
 
 <script src="kpi.js"></script>
 <!-- POPUP BERITA -->
-<!-- POPUP BERITA -->
 <div id="popupBerita" class="popup">
 
     <div class="popup-content">
@@ -329,7 +394,15 @@ DAN TELAH DILAKUKAN TINDAKAN PENERTIBAN SESUAI KETENTUAN.
     Foto 1 dari 3
 
 </div>
+<hr>
 
+<h3 class="video-title">
+🎥 VIDEO DOKUMENTASI
+</h3>
+
+<video controls autoplay muted loop>
+    <source src="video/kasus1.mp4" type="video/mp4">
+</video>
 
         <p>
 
@@ -352,6 +425,8 @@ serta mencegah potensi kehilangan air dan kerugian operasional.
     </div>
 
 </div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </body>
 </html>
 <!-- TOTAL REALISASI -->
@@ -373,6 +448,140 @@ serta mencegah potensi kehilangan air dan kerugian operasional.
 
     <div class="grafik-naik">
         📈
+    </div>
+    <hr class="line-rupiah">
+
+<div class="kerugian-box">
+
+    <div class="kerugian-title">
+
+        💰 POTENSI KERUGIAN
+        <br>
+        BERHASIL DICEGAH
+
+    </div>
+
+    <div class="kerugian-rupiah">
+
+        Rp 12.500.000
+
+    </div>
+    🎯 <hr class="line-target">
+
+<div class="progress-box">
+
+    <div class="progress-title">
+
+        🎯 TARGET BULAN JUNI
+
+    </div>
+
+    <div class="progress-persentase">
+
+        85%
+
+    </div>
+
+    <div class="progress-bar">
+
+        <div class="progress-fill"></div>
+
+    </div>
+    <hr class="line-panel">
+
+</div>
+
+</div>
+<hr>
+<h2 class="judul-info">
+📋 INFORMASI KASUS
+</h2>
+    <div class="map-container">
+
+
+
+<div class="info-kasus">
+
+    <div class="info-item">
+        📍 Lokasi :
+        <span>Surabaya Selatan</span>
+    </div>
+
+    <div class="info-item">
+        📅 Tanggal :
+        <span>11 Juni 2026</span>
+    </div>
+
+    <div class="info-item">
+        🔍 Jenis Temuan :
+        <span>Sambungan ilegal</span>
+    </div>
+
+    <div class="info-item">
+        ✅ Status :
+        <span>Selesai ditertibkan</span>
+    </div>
+
+    <div class="info-item">
+        🦏 Tim :
+        <span>RHINOCEROS 2026</span>
+    </div>
+    /div>
+
+        📍 PETA LOKASI KEJADIAN
+
+    </h2>
+
+    <div class="map-frame">
+
+        <iframe
+        src="https://www.google.com/maps?q=-7.3275,112.7890&z=16&output=embed">
+        </iframe>
+
+    </div>
+
+    <div class="map-info">
+
+        <span>
+
+            📍 Lokasi : Gunung Anyar, Surabaya Selatan
+
+        </span>
+
+        <span>
+
+            Koordinat : -7.3275, 112.7890
+
+        </span>
+
+    </div>
+
+</div>
+
+</div>
+<hr class="line-progress">
+
+<div class="progress-box">
+
+    <div class="progress-title">
+<div class="counter-box">
+
+    <div class="counter-title">
+
+        🚨 KASUS HARI INI
+
+    </div>
+
+    <div id="counterKasus">
+
+        12
+
+    </div>
+
+    <div class="counter-sub">
+
+        Kasus
+
     </div>
 
 </div>

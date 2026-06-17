@@ -140,69 +140,30 @@ closeBtn.onclick = function(){
     popup.style.display = "none";
 
 };
+window.onclick = function(event){
+
+    if(event.target == popup){
+
+        popup.style.display = "none";
+
+    }
+
+};
+document.addEventListener("keydown",function(event){
+
+    if(event.key === "Escape"){
+
+        popup.style.display = "none";
+
+    }
+
+});
 
 // =====================
 // SLIDESHOW FOTO
 // =====================
 
-window.addEventListener("DOMContentLoaded", function(){
-
-    const images = [
-        "img/top1.jpeg",
-        "img/top2.jpeg",
-        "img/top3.jpeg"
-    ];
-
-    let currentImage = 0;
-
-    const popupImage = document.getElementById("popupImage");
-    const fotoCounter = document.getElementById("fotoCounter");
-    const nextBtn = document.getElementById("nextBtn");
-    const prevBtn = document.getElementById("prevBtn");
-
-    popupImage.src = images[currentImage];
-
-    fotoCounter.innerHTML =
-    "Foto " + (currentImage + 1) +
-    " dari " + images.length;
-
-
-    nextBtn.addEventListener("click", function(){
-
-        console.log("NEXT ditekan");
-
-        currentImage++;
-
-        if(currentImage >= images.length){
-            currentImage = 0;
-        }
-
-        popupImage.src = images[currentImage];
-
-        fotoCounter.innerHTML =
-        "Foto " + (currentImage + 1) +
-        " dari " + images.length;
-
-    });
-
-
-    prevBtn.addEventListener("click", function(){
-
-        currentImage--;
-
-        if(currentImage < 0){
-            currentImage = images.length - 1;
-        }
-
-        popupImage.src = images[currentImage];
-
-        fotoCounter.innerHTML =
-        "Foto " + (currentImage + 1) +
-        " dari " + images.length;
-
-    });
-
-});
+    
     currentImage--;
 
     if(currentImage < 0){
@@ -214,4 +175,38 @@ window.addEventListener("DOMContentLoaded", function(){
     fotoCounter.innerHTML =
     "Foto " + (currentImage + 1) +
     " dari " + images.length;
+const ctxBulanan = document.getElementById("myChartBulanan");
 
+new Chart(ctxBulanan, {
+    type: "bar",
+    data: {
+        labels: ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun"],
+        datasets: [{
+            label: "Realisasi",
+            data: [500, 700, 850, 1200, 1800, 4150],
+            backgroundColor: "#00c8ff"
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: {
+                labels: {
+                    color: "white"
+                }
+            }
+        },
+        scales: {
+            x: {
+                ticks: {
+                    color: "white"
+                }
+            },
+            y: {
+                ticks: {
+                    color: "white"
+                }
+            }
+        }
+    }
+});

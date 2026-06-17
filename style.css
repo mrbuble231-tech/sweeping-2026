@@ -680,15 +680,39 @@ body{
     color:white;
 
     box-shadow:0 0 30px #00aaff;
+    animation: zoomIn .4s ease;
+}
+@keyframes zoomIn{
+
+    from{
+
+        transform:scale(.8);
+        opacity:0;
+
+    }
+
+    to{
+
+        transform:scale(1);
+        opacity:1;
+
+    }
+
 }
 
 .popup-content img{
+    transition:.3s;
 
     width:100%;
 
     border-radius:15px;
 
     margin:15px 0;
+}
+.popup-content img:hover{
+
+    transform:scale(1.02);
+
 }
 
 .close-btn{
@@ -807,5 +831,525 @@ body{
     font-size:14px;
 
     opacity:.8;
+
+}
+.timeline{
+
+    margin-top:20px;
+
+}
+
+.step{
+
+    background:#0b2b5b;
+
+    border-left:5px solid #ff0000;
+
+    padding:15px;
+
+    margin-bottom:15px;
+
+    border-radius:10px;
+
+    color:white;
+
+    box-shadow:0 0 10px rgba(255,255,255,.1);
+
+}
+.line-kronologi{
+
+    border:1px solid #00bfff;
+    margin-top:30px;
+    margin-bottom:20px;
+
+}
+
+.judul-kronologi{
+
+    color:#00bfff;
+    margin-bottom:20px;
+
+}
+
+.timeline{
+
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+
+}
+
+.step{
+
+    flex:1;
+
+    min-width:180px;
+
+    background:#0b2b5b;
+
+    border-left:5px solid red;
+
+    padding:15px;
+
+    border-radius:12px;
+
+    color:white;
+
+    box-shadow:0 0 10px rgba(0,191,255,.5);
+
+}
+.judul-info{
+
+    color:#00bfff;
+
+    margin-top:30px;
+
+    margin-bottom:20px;
+
+}
+
+.info-kasus{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:15px;
+
+}
+
+.info-item{
+
+    background:#0b2b5b;
+
+    border-left:5px solid #00bfff;
+
+    color:white;
+
+    padding:15px;
+
+    border-radius:10px;
+
+    min-width:250px;
+
+    box-shadow:0 0 10px rgba(0,191,255,.5);
+
+}
+
+.info-item span{
+
+    color:#00ff99;
+
+    font-weight:bold;
+
+}
+.judul-info{
+    color:#00bfff;
+    font-size:28px;
+    margin-bottom:20px;
+}
+.line-rupiah{
+
+    border:1px solid rgba(255,255,255,.2);
+
+    margin-top:20px;
+    margin-bottom:20px;
+
+}
+
+.kerugian-box{
+
+    background:linear-gradient(135deg,#003300,#006600);
+
+    border:2px solid #00ff99;
+
+    border-radius:15px;
+
+    padding:20px;
+
+    text-align:center;
+
+    box-shadow:0 0 20px rgba(0,255,153,.5);
+
+}
+
+.kerugian-title{
+
+    color:white;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    margin-bottom:15px;
+
+}
+
+.kerugian-rupiah{
+
+    color:#ffff00;
+
+    font-size:35px;
+
+    font-weight:bold;
+
+    text-shadow:0 0 20px yellow;
+
+}
+.video-title{
+
+    color:#00bfff;
+
+    margin-top:20px;
+
+    margin-bottom:15px;
+
+}
+
+#videoKasus{
+
+    width:100%;
+    max-height:250px;
+
+    border-radius:15px;
+
+}
+.progress-box{
+
+    margin-top:20px;
+
+    background:#08244d;
+
+    border:2px solid #00bfff;
+
+    border-radius:15px;
+
+    padding:20px;
+
+    box-shadow:0 0 20px rgba(0,191,255,.5);
+
+}
+
+.progress-title{
+
+    color:white;
+
+    text-align:center;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    margin-bottom:15px;
+
+}
+
+.progress-persentase{
+
+    color:#00ff99;
+
+    text-align:center;
+
+    font-size:45px;
+
+    font-weight:bold;
+
+    text-shadow:0 0 20px #00ff99;
+
+    margin-bottom:15px;
+
+}
+
+.progress-bar{
+
+    height:25px;
+
+    background:#222;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+}
+
+.progress-fill{
+
+    width:85%;
+
+    height:100%;
+
+    background:linear-gradient(90deg,#00ff99,#00bfff);
+
+}
+.line-target{
+
+    border:1px solid rgba(255,255,255,.2);
+
+    margin-top:15px;
+    margin-bottom:15px;
+
+}
+.line-panel{
+
+    border:1px solid rgba(255,255,255,.2);
+
+    margin:15px 0;
+
+}
+/* ===========================
+   PETA LOKASI
+=========================== */
+
+.map-container{
+
+    margin-top:25px;
+
+    border:2px solid #00bfff;
+
+    border-radius:15px;
+
+    padding:15px;
+
+    background:#021a3b;
+
+    box-shadow:0 0 15px rgba(0,191,255,.5);
+
+}
+
+
+.map-title{
+
+    color:#00bfff;
+
+    font-size:28px;
+
+    margin-bottom:15px;
+
+}
+
+
+.map-frame iframe{
+
+    height:300px;
+border-radius:20px;
+    border:none;
+
+    border-radius:15px;
+
+}
+
+
+.map-info{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    margin-top:15px;
+
+    color:white;
+
+    font-size:18px;
+
+}
+.map-container iframe{
+
+    width:100%;
+
+    height:120px;
+
+    border:none;
+
+    border-radius:15px;
+
+    box-shadow:0 0 15px cyan;
+
+}
+.weather-box{
+
+    margin-top:20px;
+
+    border:2px solid #00bfff;
+
+    border-radius:15px;
+
+    background:#0a2148;
+
+    padding:20px;
+
+    box-shadow:0 0 15px rgba(0,191,255,.5);
+
+}
+
+.weather-title{
+
+    color:#00bfff;
+
+    font-size:25px;
+
+    font-weight:bold;
+
+    margin-bottom:15px;
+
+}
+
+.weather-main{
+
+    color:white;
+
+    font-size:35px;
+
+    font-weight:bold;
+
+    text-align:center;
+
+}
+
+.weather-temp{
+
+    color:#ffdd00;
+
+    font-size:60px;
+
+    font-weight:bold;
+
+    text-align:center;
+
+    text-shadow:0 0 20px yellow;
+
+}
+
+.weather-info{
+
+    color:white;
+
+    margin-top:10px;
+
+    font-size:18px;
+
+}
+.counter-box{
+
+    margin-top:20px;
+
+    border:2px solid #ff3b3b;
+
+    border-radius:15px;
+
+    background:#0a2148;
+
+    padding:20px;
+
+    box-shadow:0 0 15px rgba(255,0,0,.5);
+
+}
+
+.counter-title{
+
+    color:#ff5555;
+
+    font-size:22px;
+
+    font-weight:bold;
+
+}
+
+#counterKasus{
+
+    color:#ffdd00;
+
+    font-size:60px;
+
+    font-weight:bold;
+
+    text-align:center;
+
+    text-shadow:0 0 20px yellow;
+
+}
+
+.counter-sub{
+
+    text-align:center;
+
+    color:white;
+
+    font-size:18px;
+
+}
+.chart-container{
+
+    background:#021a3b;
+
+    border:2px solid #00bfff;
+
+    border-radius:15px;
+
+    padding:20px;
+
+    margin-bottom:20px;
+
+    box-shadow:0 0 15px rgba(0,191,255,.5);
+
+}
+
+.chart-title{
+
+    color:#00d9ff;
+
+    font-size:30px;
+
+    font-weight:bold;
+
+    text-transform:uppercase;
+
+    text-shadow:0 0 15px #00d9ff;
+
+    margin-bottom:20px;
+
+}
+
+#myChartBulanan{
+
+    height:300px !important;
+
+}
+.chart-container{
+
+    background:#021a3b;
+
+    border:2px solid #00bfff;
+
+    border-radius:15px;
+
+    padding:20px;
+
+    margin-bottom:20px;
+
+    box-shadow:0 0 15px rgba(0,191,255,.5);
+
+}
+
+
+.chart-title{
+
+    color:#00d9ff;
+
+    font-size:28px;
+
+    font-weight:bold;
+
+    text-align:center;
+
+    margin-bottom:20px;
+
+}
+
+
+#myChartBulanan{
+
+    width:100% !important;
+
+    height:280px !important;
 
 }
