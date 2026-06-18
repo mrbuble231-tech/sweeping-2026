@@ -71,7 +71,6 @@ fetch(SHEET_URL)
         row.includes("Desember")
     ) {
             const col = row.match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g);
-
 if (!col) return;
             console.log("BULAN =", col[1]);
 console.log("BAYAR =", col[3]);
@@ -178,7 +177,7 @@ belumBayar.push(belum);
 
 setInterval(() => {
     location.reload();
-}, 300000);
+}, 120000);
 });
 setInterval(() => {
 
@@ -196,6 +195,7 @@ fetch(SHEET_URL)
 .then(csv => {
 
     const rows = csv.split("\n");
+<<<<<<< HEAD
 
     const labels2 = [];
 
@@ -391,9 +391,167 @@ fetch(SHEET_URL)
         }
 
     });
+=======
+
+    const labels2 = [];
+
+    const am = [];
+    const pp = [];
+    const tb = [];
+    const pk = [];
+    const pgl = [];
+    const rbk = [];
+    const penangguhan = [];
+
+    rows.forEach(row => {
+
+    const col = row.match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g);
+
+if (!col) return;
+if (
+    !col[5] &&
+    !col[6] &&
+    !col[7] &&
+    !col[8] &&
+    !col[9] &&
+    !col[10] &&
+    !col[11]
+) return;
+
+        if (
+    row.includes("Januari") ||
+    row.includes("Februari") ||
+    row.includes("Maret") ||
+    row.includes("April") ||
+    row.includes("Mei") ||
+    row.includes("Juni") ||
+    row.includes("Juli") ||
+    row.includes("Agustus") ||
+    row.includes("September") ||
+    row.includes("Oktober") ||
+    row.includes("November") ||
+    row.includes("Desember")
+) {
+
+    labels2.push(col[1]?.replace(/"/g, "").trim());
+
+    am.push(parseInt(col[5]?.replace(/,/g, "")) || 0);
+    pp.push(parseInt(col[6]?.replace(/,/g, "")) || 0);
+    tb.push(parseInt(col[7]?.replace(/,/g, "")) || 0);
+    pk.push(parseInt(col[8]?.replace(/,/g, "")) || 0);
+    pgl.push(parseInt(col[9]?.replace(/,/g, "")) || 0);
+    rbk.push(parseInt(col[10]?.replace(/,/g, "")) || 0);
+    penangguhan.push(parseInt(col[11]?.replace(/,/g, "")) || 0);
+
+}
+>>>>>>> 06bc232ed885a0f02eb3c46e344edbb6aede2ebe
+
+    });
+
+    new Chart(ctx2, {
+
+    type: "bar",
+
+    plugins: [ChartDataLabels],
+
+    data: {
+
+        labels: labels2,
+
+        datasets: [
+
+            {
+                label: "Angkat Meter",
+                data: am,
+                backgroundColor: "#f97316"
+            },
+
+            {
+                label: "Potong Pipa",
+                data: pp,
+                backgroundColor: "#fbbf24"
+            },
+
+            {
+                label: "TB",
+                data: tb,
+                backgroundColor: "#8b5cf6"
+            },
+
+            {
+                label: "PK",
+                data: pk,
+                backgroundColor: "#14b8a6"
+            },
+
+            {
+                label: "PGL",
+                data: pgl,
+                backgroundColor: "#06b6d4"
+            },
+
+            {
+                label: "RBK",
+                data: rbk,
+                backgroundColor: "#000000"
+            },
+
+            {
+                label: "Penangguhan",
+                data: penangguhan,
+                backgroundColor: "#ec4899"
+            }
+
+        ]
+
+    },
+
+    options: {
+
+        responsive: true,
+        maintainAspectRatio: false,
+
+        plugins: {
+
+            datalabels: {
+
+                color: "#000",
+
+                anchor: "end",
+
+                align: "top",
+
+                font: {
+                    weight: "bold"
+                },
+
+                formatter: value =>
+                    value.toLocaleString("id-ID")
+
+            },
+
+            title: {
+
+                display: true,
+
+                text:
+                "Monitoring Angkat Meter, Potong Pipa, TB, PK, PGL, RBK & Penangguhan"
+
+            }
+
+        }
+
+    }
 
 });
+<<<<<<< HEAD
 setInterval(() => {
+=======
+    
+
+});
+
+>>>>>>> 06bc232ed885a0f02eb3c46e344edbb6aede2ebe
 
     location.reload();
 
