@@ -116,30 +116,8 @@ window.onload = function(){
 
     };
 
-}
+};
 
-
-window.onload = function(){
-
-    const popup = document.getElementById("popupBerita");
-
-    const berita = document.getElementById("beritaUtama");
-
-    const closeBtn = document.querySelector(".close-btn");
-
-    berita.onclick = function(){
-
-        popup.style.display = "block";
-
-    };
-
-    closeBtn.onclick = function(){
-
-        popup.style.display = "none";
-
-    };
-
-}
 // =========================
 // CHART MONITORING REALISASI
 // =========================
@@ -178,97 +156,127 @@ console.log(bulan);
 console.log(realisasi);
         const ctxBulanan =
         document.getElementById("myChartBulanan");
-        <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
 Chart.register(ChartDataLabels);
-        new Chart(ctxBulanan,{
+       new Chart(ctxBulanan,{
 
-            type:"bar",
+    type:"bar",
 
-            data: {
+    data:{
+        labels: bulan.filter((b,i)=>realisasi[i]>0),
 
-    labels: bulan.filter((b,i)=>realisasi[i]>0),
+        datasets:[{
+            label:"Realisasi",
 
-    datasets: [
+            data:realisasi.filter(v=>v>0),
 
-        {
-            label: "Realisasi",
+            backgroundColor:"#00c8ff",
 
-            data: realisasi.filter(v=>v>0),
-
-            backgroundColor: "#00c8ff",
-
-            borderRadius: 10
-        }
-
-    ]
-
-},
-
-   options: {
-
-    responsive: true,
-    maintainAspectRatio: false,
-
-    plugins: {
-        legend: {
-            labels: {
-                color: "white",
-                font: {
-                    size: 16,
-                    weight: "bold"
-                }
-            }
-        },
-
-        tooltip: {
-            titleFont: {
-                size: 16
-            },
-            bodyFont: {
-                size: 16
-            }
-        }
+            borderRadius:10
+        }]
     },
 
-    scales: {
+    options:{
 
-        x: {
-            ticks: {
-                color: "white",
-                font: {
-                    size: 14,
-                    weight: "bold"
+        responsive:true,
+        maintainAspectRatio:false,
+
+        plugins:{
+
+            legend:{
+                labels:{
+                    color:"white",
+                    font:{
+                        size:16,
+                        weight:"bold"
+                    }
                 }
             },
 
-            grid: {
-                color: "rgba(255,255,255,0.05)"
+            tooltip:{
+                titleFont:{
+                    size:16
+                },
+                bodyFont:{
+                    size:16
+                }
+            },
+
+            datalabels:{
+
+                color:"#ffffff",
+
+                anchor:"end",
+
+                align:"top",
+
+                font:{
+                    size:14,
+                    weight:"bold"
+                },
+
+                formatter:function(value){
+                    return value.toLocaleString("id-ID");
+                }
+
             }
+
         },
+        datalabels:{
+    color:"#ffffff",
 
-        y: {
-            beginAtZero: true,
+    anchor:"end",
 
-            ticks: {
-                color: "white",
-                font: {
-                    size: 14,
-                    weight: "bold"
+    align:"top",
+
+    offset:5,
+
+    font:{
+        size:18,
+        weight:"bold"
+    },
+
+    formatter:function(value){
+        return value.toLocaleString("id-ID");
+    }
+},
+
+        scales:{
+
+            x:{
+                ticks:{
+                    color:"white",
+                    font:{
+                        size:18,
+                        weight:"bold"
+                    }
+                },
+
+                grid:{
+                    color:"rgba(255,255,255,0.05)"
                 }
             },
 
-            grid: {
-                color: "rgba(255,255,255,0.05)"
+            y:{
+                beginAtZero:true,
+
+                ticks:{
+                    color:"white",
+                    font:{
+                        size:16,
+                        weight:"bold"
+                    }
+                },
+
+                grid:{
+                    color:"rgba(255,255,255,0.05)"
+                }
             }
+
         }
 
     }
 
-}
-
-
-        });
-
-    }
+});
+ }
 
 });

@@ -115,37 +115,6 @@ h1{
 
 /* CHART */
 
-.chart-container{
-
-    width:100%;
-    margin-top:15px;
-
-    background:#08224c;
-
-    border:2px solid #00c8ff;
-
-    border-radius:15px;
-
-    padding:15px;
-
-    box-shadow:0 0 15px rgba(0,200,255,.4);
-
-}
-
-#myChart,
-#myChart2{
-    width:100% !important;
-    height:500px !important;
-}
-.chart-container{
-    width:100%;
-    background:#fff;
-    margin-top:30px;
-    padding:20px;
-    border-radius:15px;
-    box-shadow:0 4px 15px rgba(0,0,0,0.08);
-}
-
 .chart-title{
     display:inline-block;
     background:#1e40af;
@@ -201,21 +170,10 @@ table tr:hover{
          font-size:28px;
     }
 
-    #myChart{
-        height:350px !important;
-    }
-}
-.chart-container{
-    width:100%;
-    background:#fff;
-    margin-top:30px;
-    padding:20px;
+   
 }
 
-#myChart{
-    width:100% !important;
-    height:600px !important;
-}
+
 html,
 body{
     width:100%;
@@ -232,14 +190,7 @@ body{
     width:100% !important;
 }
 
-.chart-container{
-    width:100% !important;
-}
 
-#myChart{
-    width:100% !important;
-    height:600px !important;
-}
 .footer-credit{
     text-align:center;
     margin-top:30px;
@@ -1285,21 +1236,7 @@ border-radius:20px;
     font-size:18px;
 
 }
-.chart-container{
 
-    background:#021a3b;
-
-    border:2px solid #00bfff;
-
-    border-radius:15px;
-
-    padding:20px;
-
-    margin-bottom:20px;
-
-    box-shadow:0 0 15px rgba(0,191,255,.5);
-
-}
 
 .chart-title{
 
@@ -1317,29 +1254,6 @@ border-radius:20px;
 
 }
 
-#myChartBulanan{
-    width:100% !important;
-
-    height:300px !important;
-
-}
-.chart-container{
-
-    background:#021a3b;
-
-    border:2px solid #00bfff;
-
-    border-radius:15px;
-
-    padding:20px;
-
-    margin-bottom:20px;
-
-    box-shadow:0 0 15px rgba(0,191,255,.5);
-
-}
-
-
 .chart-title{
 
     color:#00d9ff;
@@ -1353,42 +1267,127 @@ border-radius:20px;
     margin-bottom:20px;
 
 }
+/* =====================
+MONITORING REALISASI
+===================== */
 
-
-#myChartBulanan{
-
-    width:100% !important;
-
-    height:280px !important;
-
-}
 .chart-container{
-    background:#001f4d;
+
+    width:100%;
+
+    min-height:380px;
+
+    background:#07204d;
+
     border:2px solid #00c8ff;
+
     border-radius:20px;
+
     padding:20px;
-}
 
-#myChartBulanan{
-    width:100% !important;
-    height:300px !important;
-}
-#myChartBulanan{
-    display:block;
-    width:100% !important;
-    height:300px !important;
-    background:#001f4d;
-}
-.chart-container{
+    margin-top:20px;
 
-    height:300px;
+    box-shadow:0 0 20px rgba(0,200,255,.4);
 
 }
+.chart-title{
 
-#myChartBulanan{
+    color:white;
+
+    font-size:26px;
+
+    font-weight:bold;
+
+    margin-bottom:20px;
+
+}#myChartBulanan{
 
     width:100% !important;
 
-    height:240px !important;
+    height:320px !important;
+
+}
+#myChartBulanan{
+
+    width:100% !important;
+
+    height:320px !important;
+
+}
+.video-container{
+
+    width:100%;
+    height:430px;
+
+    background:#00122e;
+
+    border:2px solid #00c8ff;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    box-shadow:0 0 20px rgba(0,200,255,.4);
+
+}
+
+.video-container video{
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+}
+
+.berita-box{
+
+    margin-top:20px;
+
+    background:#021a3b;
+
+    border:2px solid #00c8ff;
+
+    border-radius:15px;
+
+    padding:20px;
+
+}
+
+.running-title{
+
+    background:red;
+
+    color:white;
+
+    font-size:13px;
+
+    font-weight:bold;
+
+    padding:8px;
+
+    border-radius:8px;
+
+}
+
+.berita-isi{
+
+    margin-top:15px;
+
+    color:white;
+
+    font-size:28px;
+
+    line-height:55px;
+
+}
+
+.berita-footer{
+
+    margin-top:20px;
+
+    color:#00c8ff;
+
+    font-size:18px;
 
 }

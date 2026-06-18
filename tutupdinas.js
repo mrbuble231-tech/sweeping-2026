@@ -1,4 +1,4 @@
-const SHEET_URL =
+const SHEET_URL_TUTUPAN =
 "https://docs.google.com/spreadsheets/d/e/2PACX-1vRr8R_L7SK3go995gTrx9UZUJMtUeyrCq1SLSrtYlN9HlZeHKFUODicrD_9cyr8H57EppczJ3ID7k4-/pub?gid=920702944&single=true&output=csv";
 
 function updateClock() {
@@ -195,7 +195,6 @@ fetch(SHEET_URL)
 .then(csv => {
 
     const rows = csv.split("\n");
-<<<<<<< HEAD
 
     const labels2 = [];
 
@@ -391,7 +390,6 @@ fetch(SHEET_URL)
         }
 
     });
-=======
 
     const labels2 = [];
 
@@ -444,7 +442,6 @@ if (
     penangguhan.push(parseInt(col[11]?.replace(/,/g, "")) || 0);
 
 }
->>>>>>> 06bc232ed885a0f02eb3c46e344edbb6aede2ebe
 
     });
 
@@ -544,14 +541,11 @@ if (
     }
 
 });
-<<<<<<< HEAD
 setInterval(() => {
-=======
     
 
 });
 
->>>>>>> 06bc232ed885a0f02eb3c46e344edbb6aede2ebe
 
     location.reload();
 

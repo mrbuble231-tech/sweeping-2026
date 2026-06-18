@@ -1,7 +1,7 @@
-const SHEET_URL_TUTUPAN =
+const SHEET_URL_KPI =
 "https://docs.google.com/spreadsheets/d/e/2PACX-1vRr8R_L7SK3go995gTrx9UZUJMtUeyrCq1SLSrtYlN9HlZeHKFUODicrD_9cyr8H57EppczJ3ID7k4-/pub?gid=920702944&single=true&output=csv";
 
-Papa.parse(SHEET_URL_TUTUPAN,{
+Papa.parse(SHEET_URL_KPI,{
 
     download:true,
     header:true,
