@@ -1,5 +1,5 @@
 const SHEET_URL =
-"https://docs.google.com/spreadsheets/d/e/2PACX-1vT51R1B0w5xIRP2Ho92npB6jA6OindLCV_TD0ylsPsRMed2PWvcNJwblCFZQHuOqwszAgSYbX1qHNnl/pub?gid=0&single=true&output=csv";
+"https://docs.google.com/spreadsheets/d/e/2PACX-1vT51R1B0w5xIRP2Ho92npB6jA6OindLCV_TD0ylsPsRMed2PWvcNJwblCFZQHuOqwszAgSYbX1qHNnl/pub?gid=1854031312&single=true&output=csv";
 
 Papa.parse(SHEET_URL, {
 
@@ -7,7 +7,6 @@ Papa.parse(SHEET_URL, {
     header: true,
 
     complete: function(results){
-        console.log(results.data);
 
         let totalAM = 0;
         let totalPP = 0;
@@ -48,7 +47,6 @@ Papa.parse(SHEET_URL, {
     }
 
 });
-
 
 // =======================
 // JAM DIGITAL
@@ -118,95 +116,159 @@ window.onload = function(){
 
     };
 
-};
-// =====================
-// POPUP BERITA
-// =====================
+}
 
-const popup = document.getElementById("popupBerita");
 
-const berita = document.getElementById("beritaUtama");
+window.onload = function(){
 
-const closeBtn = document.querySelector(".close-btn");
+    const popup = document.getElementById("popupBerita");
 
-berita.onclick = function(){
+    const berita = document.getElementById("beritaUtama");
 
-    popup.style.display = "block";
+    const closeBtn = document.querySelector(".close-btn");
 
-};
+    berita.onclick = function(){
 
-closeBtn.onclick = function(){
+        popup.style.display = "block";
 
-    popup.style.display = "none";
+    };
 
-};
-window.onclick = function(event){
-
-    if(event.target == popup){
+    closeBtn.onclick = function(){
 
         popup.style.display = "none";
 
-    }
+    };
 
-};
-document.addEventListener("keydown",function(event){
+}
+// =========================
+// CHART MONITORING REALISASI
+// =========================
 
-    if(event.key === "Escape"){
+Papa.parse(SHEET_URL,{
 
-        popup.style.display = "none";
+    download:true,
+    header:true,
 
-    }
+    complete:function(results){
 
-});
+        let bulan = [];
+        let realisasi = [];
 
-// =====================
-// SLIDESHOW FOTO
-// =====================
+        results.data.forEach(row=>{
 
-    
-    currentImage--;
+            if(row["BULAN"]){
 
-    if(currentImage < 0){
-        currentImage = images.length - 1;
-    }
+                bulan.push(row["BULAN"]);
 
-    popupImage.src = images[currentImage];
+                let total =
 
-    fotoCounter.innerHTML =
-    "Foto " + (currentImage + 1) +
-    " dari " + images.length;
-const ctxBulanan = document.getElementById("myChartBulanan");
+                    (Number(row["AM"]) || 0)+
+                    (Number(row["PP"]) || 0)+
+                    (Number(row["TB"]) || 0)+
+                    (Number(row["PK"]) || 0)+
+                    (Number(row["PGL"]) || 0)+
+                    (Number(row["PENANGGUHAN"]) || 0);
 
-new Chart(ctxBulanan, {
-    type: "bar",
-    data: {
-        labels: ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun"],
-        datasets: [{
+                realisasi.push(total);
+
+            }
+
+        });
+console.log(bulan);
+console.log(realisasi);
+        const ctxBulanan =
+        document.getElementById("myChartBulanan");
+        <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+Chart.register(ChartDataLabels);
+        new Chart(ctxBulanan,{
+
+            type:"bar",
+
+            data: {
+
+    labels: bulan.filter((b,i)=>realisasi[i]>0),
+
+    datasets: [
+
+        {
             label: "Realisasi",
-            data: [500, 700, 850, 1200, 1800, 4150],
-            backgroundColor: "#00c8ff"
-        }]
-    },
-    options: {
-        responsive: true,
-        plugins: {
-            legend: {
-                labels: {
-                    color: "white"
+
+            data: realisasi.filter(v=>v>0),
+
+            backgroundColor: "#00c8ff",
+
+            borderRadius: 10
+        }
+
+    ]
+
+},
+
+   options: {
+
+    responsive: true,
+    maintainAspectRatio: false,
+
+    plugins: {
+        legend: {
+            labels: {
+                color: "white",
+                font: {
+                    size: 16,
+                    weight: "bold"
                 }
             }
         },
-        scales: {
-            x: {
-                ticks: {
-                    color: "white"
-                }
+
+        tooltip: {
+            titleFont: {
+                size: 16
             },
-            y: {
-                ticks: {
-                    color: "white"
-                }
+            bodyFont: {
+                size: 16
             }
         }
+    },
+
+    scales: {
+
+        x: {
+            ticks: {
+                color: "white",
+                font: {
+                    size: 14,
+                    weight: "bold"
+                }
+            },
+
+            grid: {
+                color: "rgba(255,255,255,0.05)"
+            }
+        },
+
+        y: {
+            beginAtZero: true,
+
+            ticks: {
+                color: "white",
+                font: {
+                    size: 14,
+                    weight: "bold"
+                }
+            },
+
+            grid: {
+                color: "rgba(255,255,255,0.05)"
+            }
+        }
+
     }
+
+}
+
+
+        });
+
+    }
+
 });

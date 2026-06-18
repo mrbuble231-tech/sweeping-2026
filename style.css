@@ -116,12 +116,20 @@ h1{
 /* CHART */
 
 .chart-container{
+
     width:100%;
-    background:#fff;
-    margin-top:30px;
-    padding:20px;
+    margin-top:15px;
+
+    background:#08224c;
+
+    border:2px solid #00c8ff;
+
     border-radius:15px;
-    box-shadow:0 4px 15px rgba(0,0,0,0.08);
+
+    padding:15px;
+
+    box-shadow:0 0 15px rgba(0,200,255,.4);
+
 }
 
 #myChart,
@@ -1310,6 +1318,7 @@ border-radius:20px;
 }
 
 #myChartBulanan{
+    width:100% !important;
 
     height:300px !important;
 
@@ -1351,5 +1360,35 @@ border-radius:20px;
     width:100% !important;
 
     height:280px !important;
+
+}
+.chart-container{
+    background:#001f4d;
+    border:2px solid #00c8ff;
+    border-radius:20px;
+    padding:20px;
+}
+
+#myChartBulanan{
+    width:100% !important;
+    height:300px !important;
+}
+#myChartBulanan{
+    display:block;
+    width:100% !important;
+    height:300px !important;
+    background:#001f4d;
+}
+.chart-container{
+
+    height:300px;
+
+}
+
+#myChartBulanan{
+
+    width:100% !important;
+
+    height:240px !important;
 
 }

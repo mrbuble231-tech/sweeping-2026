@@ -139,15 +139,7 @@ Developed by RHINOCEROS 🦏
     <p id="deskripsi">
         Tim Penertiban 2026 berhasil menemukan sambungan ilegal dan meter air hilang.
     </p>
-   <div class="chart-container">
-
-    <h2 class="chart-title">
-        📊 MONITORING REALISASI 2026
-    </h2>
- <canvas id="myChartBulanan"></canvas>
-
-</div>
-
+   
     <h2 class="map-title">
 
 <div class="timeline">
@@ -298,6 +290,18 @@ DAN TELAH DILAKUKAN TINDAKAN PENERTIBAN SESUAI KETENTUAN.
         🌬 Angin : 8 km/h
 
     </div>
+    <div class="chart-container">
+
+    <h2 class="chart-title">
+        📊 MONITORING REALISASI 2026
+    </h2>
+
+    <canvas id="myChartBulanan"></canvas>
+
+</div>
+
+
+<div class="total-panel">
 
 </div>
             <div class="card-news">
@@ -365,10 +369,10 @@ DAN TELAH DILAKUKAN TINDAKAN PENERTIBAN SESUAI KETENTUAN.
 </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
 
 <script src="news.js"></script>
-
 <script src="kpi.js"></script>
 <!-- POPUP BERITA -->
 <div id="popupBerita" class="popup">
@@ -425,10 +429,9 @@ serta mencegah potensi kehilangan air dan kerugian operasional.
     </div>
 
 </div>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<!-- MONITORING REALISASI -->
 
-</body>
-</html>
+
 <!-- TOTAL REALISASI -->
 <div class="total-panel">
 
@@ -526,11 +529,11 @@ serta mencegah potensi kehilangan air dan kerugian operasional.
         🦏 Tim :
         <span>RHINOCEROS 2026</span>
     </div>
-    /div>
+   </div>
 
-        📍 PETA LOKASI KEJADIAN
-
-    </h2>
+<h2>
+📍 PETA LOKASI KEJADIAN
+</h2>
 
     <div class="map-frame">
 
@@ -561,9 +564,6 @@ serta mencegah potensi kehilangan air dan kerugian operasional.
 </div>
 <hr class="line-progress">
 
-<div class="progress-box">
-
-    <div class="progress-title">
 <div class="counter-box">
 
     <div class="counter-title">
@@ -585,3 +585,11 @@ serta mencegah potensi kehilangan air dan kerugian operasional.
     </div>
 
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="news.js"></script>
+<script src="kpi.js"></script>
+
+</body>
+</html>
+
