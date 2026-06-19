@@ -41,7 +41,7 @@ CHART 1
 
 const ctx1 = document.getElementById("myChart").getContext("2d");
 
-fetch(SHEET_URL)
+fetch(SHEET_URL_TUTUPAN)
 .then(response => response.text())
 .then(csv => {
 
@@ -70,7 +70,7 @@ fetch(SHEET_URL)
         row.includes("November") ||
         row.includes("Desember")
     ) {
-            const col = row.match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g);
+           const col = row.match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g);
 if (!col) return;
             console.log("BULAN =", col[1]);
 console.log("BAYAR =", col[3]);
@@ -175,36 +175,75 @@ belumBayar.push(belum);
     });
 
 
+
 setInterval(() => {
-    location.reload();
+  location.reload();
 }, 120000);
 });
-setInterval(() => {
 
-    location.reload();
-
-}, 120000);
 /* =========================
 CHART 2
 ========================= */
 alert("CHART 2 BARU");
 const ctx2 = document.getElementById("myChart2").getContext("2d");
 
-fetch(SHEET_URL)
+fetch(SHEET_URL_TUTUPAN)
+.then(response => response.text())
+.then(csv => {
+
+    
+/* =========================
+DOWNLOAD PDF
+========================= */
+
+function downloadPDF() {
+
+const container = document.querySelector(".container");
+
+const oldTransform = container.style.transform;
+const oldWidth = container.style.width;
+
+container.style.width = "1000px";
+container.style.transform = "scale(0.85)";
+container.style.transformOrigin = "top left";
+
+html2pdf()
+    .from(container)
+    .set({
+        margin: 0,
+        filename: "Dashboard_Tutup_Dinas_2026.pdf",
+        html2canvas: {
+            scale: 2
+        },
+        jsPDF: {
+            unit: "mm",
+            format: "a3",
+            orientation: "landscape"
+        }
+    })
+    .save()
+    .then(() => {
+        container.style.transform = oldTransform;
+        container.style.width = oldWidth;
+    });
+
+}
+/* =========================
+TOTAL KPI OTOMATIS
+========================= */
+
+fetch(SHEET_URL_TUTUPAN)
 .then(response => response.text())
 .then(csv => {
 
     const rows = csv.split("\n");
 
-    const labels2 = [];
-
-    const am = [];
-    const pp = [];
-    const tb = [];
-    const pk = [];
-    const pgl = [];
-    const rbk = [];
-    const penangguhan = [];
+    let totalAM = 0;
+    let totalPP = 0;
+    let totalTB = 0;
+    let totalPK = 0;
+    let totalPGL = 0;
+    let totalPNG = 0;
 
     rows.forEach(row => {
 
@@ -227,73 +266,105 @@ fetch(SHEET_URL)
 
             if (!col) return;
 
-            const bulan = col[1]
-                ?.replace(/"/g, "")
-                .replace(" 2026", "")
-                .trim();
+            totalAM += parseInt(col[5]?.replace(/"/g,"")?.replace(/,/g,"")) || 0;
 
-            labels2.push(bulan);
+            totalPP += parseInt(col[6]?.replace(/"/g,"")?.replace(/,/g,"")) || 0;
 
-            am.push(
-                parseInt(
-                    col[5]
-                        ?.replace(/"/g, "")
-                        ?.replace(/,/g, "")
-                ) || 0
-            );
+            totalTB += parseInt(col[7]?.replace(/"/g,"")?.replace(/,/g,"")) || 0;
 
-            pp.push(
-                parseInt(
-                    col[6]
-                        ?.replace(/"/g, "")
-                        ?.replace(/,/g, "")
-                ) || 0
-            );
+            totalPK += parseInt(col[8]?.replace(/"/g,"")?.replace(/,/g,"")) || 0;
 
-            tb.push(
-                parseInt(
-                    col[7]
-                        ?.replace(/"/g, "")
-                        ?.replace(/,/g, "")
-                ) || 0
-            );
+            totalPGL += parseInt(col[9]?.replace(/"/g,"")?.replace(/,/g,"")) || 0;
 
-            pk.push(
-                parseInt(
-                    col[8]
-                        ?.replace(/"/g, "")
-                        ?.replace(/,/g, "")
-                ) || 0
-            );
-
-            pgl.push(
-                parseInt(
-                    col[9]
-                        ?.replace(/"/g, "")
-                        ?.replace(/,/g, "")
-                ) || 0
-            );
-
-            rbk.push(
-                parseInt(
-                    col[10]
-                        ?.replace(/"/g, "")
-                        ?.replace(/,/g, "")
-                ) || 0
-            );
-
-            penangguhan.push(
-                parseInt(
-                    col[11]
-                        ?.replace(/"/g, "")
-                        ?.replace(/,/g, "")
-                ) || 0
-            );
+            totalPNG += parseInt(col[11]?.replace(/"/g,"")?.replace(/,/g,"")) || 0;
 
         }
 
     });
 
+    // KPI Dashboard
+    document.getElementById("angkatMeter").textContent =
+        totalAM.toLocaleString("id-ID");
+
+    document.getElementById("potongPipa").textContent =
+        totalPP.toLocaleString("id-ID");
+
+    document.getElementById("tb").textContent =
+        totalTB.toLocaleString("id-ID");
+
+    document.getElementById("pk").textContent =
+        totalPK.toLocaleString("id-ID");
+
+    document.getElementById("pgl").textContent =
+        totalPGL.toLocaleString("id-ID");
+
+    document.getElementById("penangguhan").textContent =
+        totalPNG.toLocaleString("id-ID");
+
+});
+const rows = csv.split("\n");
+
+ const labels2 = [];
+
+    const am = [];
+    const pp = [];
+    const tb = [];
+    const pk = [];
+    const pgl = [];
+    const rbk = [];
+    const penangguhan = [];
+
+    rows.forEach(row => {
+
+    const col = row.match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g);
+
+if (!col) return;
+if (
+    !col[5] &&
+    !col[6] &&
+    !col[7] &&
+    !col[8] &&
+    !col[9] &&
+    !col[10] &&
+    !col[11]
+) return;
+
+        if (
+    row.includes("Januari") ||
+    row.includes("Februari") ||
+    row.includes("Maret") ||
+    row.includes("April") ||
+    row.includes("Mei") ||
+    row.includes("Juni") ||
+    row.includes("Juli") ||
+    row.includes("Agustus") ||
+    row.includes("September") ||
+    row.includes("Oktober") ||
+    row.includes("November") ||
+    row.includes("Desember")
+) {
+
+    labels2.push(col[1]?.replace(/"/g, "").trim());
+
+    am.push(parseInt(col[5]?.replace(/,/g, "")) || 0);
+    pp.push(parseInt(col[6]?.replace(/,/g, "")) || 0);
+    tb.push(parseInt(col[7]?.replace(/,/g, "")) || 0);
+    pk.push(parseInt(col[8]?.replace(/,/g, "")) || 0);
+    pgl.push(parseInt(col[9]?.replace(/,/g, "")) || 0);
+    rbk.push(parseInt(col[10]?.replace(/,/g, "")) || 0);
+    penangguhan.push(parseInt(col[11]?.replace(/,/g, "")) || 0);
+
+}
+
+    });
+    console.log(labels2);
+console.log(am);
+console.log(pp);
+console.log(tb);
+console.log(pk);
+console.log(pgl);
+console.log(rbk);
+console.log(penangguhan);
     new Chart(ctx2, {
 
         type: "bar",
@@ -391,340 +462,8 @@ fetch(SHEET_URL)
 
     });
 
-    const labels2 = [];
 
-    const am = [];
-    const pp = [];
-    const tb = [];
-    const pk = [];
-    const pgl = [];
-    const rbk = [];
-    const penangguhan = [];
-
-    rows.forEach(row => {
-
-    const col = row.match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g);
-
-if (!col) return;
-if (
-    !col[5] &&
-    !col[6] &&
-    !col[7] &&
-    !col[8] &&
-    !col[9] &&
-    !col[10] &&
-    !col[11]
-) return;
-
-        if (
-    row.includes("Januari") ||
-    row.includes("Februari") ||
-    row.includes("Maret") ||
-    row.includes("April") ||
-    row.includes("Mei") ||
-    row.includes("Juni") ||
-    row.includes("Juli") ||
-    row.includes("Agustus") ||
-    row.includes("September") ||
-    row.includes("Oktober") ||
-    row.includes("November") ||
-    row.includes("Desember")
-) {
-
-    labels2.push(col[1]?.replace(/"/g, "").trim());
-
-    am.push(parseInt(col[5]?.replace(/,/g, "")) || 0);
-    pp.push(parseInt(col[6]?.replace(/,/g, "")) || 0);
-    tb.push(parseInt(col[7]?.replace(/,/g, "")) || 0);
-    pk.push(parseInt(col[8]?.replace(/,/g, "")) || 0);
-    pgl.push(parseInt(col[9]?.replace(/,/g, "")) || 0);
-    rbk.push(parseInt(col[10]?.replace(/,/g, "")) || 0);
-    penangguhan.push(parseInt(col[11]?.replace(/,/g, "")) || 0);
-
-}
-
-    });
-
-    new Chart(ctx2, {
-
-    type: "bar",
-
-    plugins: [ChartDataLabels],
-
-    data: {
-
-        labels: labels2,
-
-        datasets: [
-
-            {
-                label: "Angkat Meter",
-                data: am,
-                backgroundColor: "#f97316"
-            },
-
-            {
-                label: "Potong Pipa",
-                data: pp,
-                backgroundColor: "#fbbf24"
-            },
-
-            {
-                label: "TB",
-                data: tb,
-                backgroundColor: "#8b5cf6"
-            },
-
-            {
-                label: "PK",
-                data: pk,
-                backgroundColor: "#14b8a6"
-            },
-
-            {
-                label: "PGL",
-                data: pgl,
-                backgroundColor: "#06b6d4"
-            },
-
-            {
-                label: "RBK",
-                data: rbk,
-                backgroundColor: "#000000"
-            },
-
-            {
-                label: "Penangguhan",
-                data: penangguhan,
-                backgroundColor: "#ec4899"
-            }
-
-        ]
-
-    },
-
-    options: {
-
-        responsive: true,
-        maintainAspectRatio: false,
-
-        plugins: {
-
-            datalabels: {
-
-                color: "#000",
-
-                anchor: "end",
-
-                align: "top",
-
-                font: {
-                    weight: "bold"
-                },
-
-                formatter: value =>
-                    value.toLocaleString("id-ID")
-
-            },
-
-            title: {
-
-                display: true,
-
-                text:
-                "Monitoring Angkat Meter, Potong Pipa, TB, PK, PGL, RBK & Penangguhan"
-
-            }
-
-        }
-
-    }
-
-});
 setInterval(() => {
-    
-
-});
-
-
     location.reload();
-
 }, 120000);
-/* =========================
-DOWNLOAD PDF
-========================= */
-
-function downloadPDF() {
-
-const container = document.querySelector(".container");
-
-const oldTransform = container.style.transform;
-const oldWidth = container.style.width;
-
-container.style.width = "1000px";
-container.style.transform = "scale(0.85)";
-container.style.transformOrigin = "top left";
-
-html2pdf()
-    .from(container)
-    .set({
-        margin: 0,
-        filename: "Dashboard_Tutup_Dinas_2026.pdf",
-        html2canvas: {
-            scale: 2
-        },
-        jsPDF: {
-            unit: "mm",
-            format: "a3",
-            orientation: "landscape"
-        }
-    })
-    .save()
-    .then(() => {
-        container.style.transform = oldTransform;
-        container.style.width = oldWidth;
-    });
-
-}
-/* =========================
-TOTAL KPI OTOMATIS
-========================= */
-
-fetch(SHEET_URL)
-.then(response => response.text())
-.then(csv => {
-
-    const rows = csv.split("\n");
-
-    let totalAM = 0;
-    let totalPP = 0;
-    let totalTB = 0;
-    let totalPK = 0;
-    let totalPGL = 0;
-    let totalPNG = 0;
-
-    rows.forEach(row => {
-
-        if (
-            row.includes("Januari") ||
-            row.includes("Februari") ||
-            row.includes("Maret") ||
-            row.includes("April") ||
-            row.includes("Mei") ||
-            row.includes("Juni") ||
-            row.includes("Juli") ||
-            row.includes("Agustus") ||
-            row.includes("September") ||
-            row.includes("Oktober") ||
-            row.includes("November") ||
-            row.includes("Desember")
-        ) {
-
-            const col = row.match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g);
-
-            if (!col) return;
-
-            totalAM += parseInt(col[5]?.replace(/"/g,"")?.replace(/,/g,"")) || 0;
-
-            totalPP += parseInt(col[6]?.replace(/"/g,"")?.replace(/,/g,"")) || 0;
-
-            totalTB += parseInt(col[7]?.replace(/"/g,"")?.replace(/,/g,"")) || 0;
-
-            totalPK += parseInt(col[8]?.replace(/"/g,"")?.replace(/,/g,"")) || 0;
-
-            totalPGL += parseInt(col[9]?.replace(/"/g,"")?.replace(/,/g,"")) || 0;
-
-            totalPNG += parseInt(col[11]?.replace(/"/g,"")?.replace(/,/g,"")) || 0;
-
-        }
-
-    });
-
-    // KPI Dashboard
-    document.getElementById("angkatMeter").textContent =
-        totalAM.toLocaleString("id-ID");
-
-    document.getElementById("potongPipa").textContent =
-        totalPP.toLocaleString("id-ID");
-
-    document.getElementById("tb").textContent =
-        totalTB.toLocaleString("id-ID");
-
-    document.getElementById("pk").textContent =
-        totalPK.toLocaleString("id-ID");
-
-    document.getElementById("pgl").textContent =
-        totalPGL.toLocaleString("id-ID");
-
-    document.getElementById("penangguhan").textContent =
-        totalPNG.toLocaleString("id-ID");
-
-});
-/* =========================
-TOTAL KPI OTOMATIS
-========================= */
-
-fetch(SHEET_URL)
-.then(response => response.text())
-.then(csv => {
-
-    const rows = csv.split("\n");
-
-    let totalAM = 0;
-    let totalPP = 0;
-    let totalTB = 0;
-    let totalPK = 0;
-    let totalPGL = 0;
-    let totalPNG = 0;
-
-    rows.forEach(row => {
-
-        if (
-            row.includes("Januari") ||
-            row.includes("Februari") ||
-            row.includes("Maret") ||
-            row.includes("April") ||
-            row.includes("Mei") ||
-            row.includes("Juni") ||
-            row.includes("Juli") ||
-            row.includes("Agustus") ||
-            row.includes("September") ||
-            row.includes("Oktober") ||
-            row.includes("November") ||
-            row.includes("Desember")
-        ) {
-
-            const col = row.match(/(".*?"|[^",]+)(?=\\s*,|\\s*$)/g);
-
-            if (!col) return;
-
-            totalAM += parseInt(col[5]?.replace(/"/g,"")?.replace(/,/g,"")) || 0;
-            totalPP += parseInt(col[6]?.replace(/"/g,"")?.replace(/,/g,"")) || 0;
-            totalTB += parseInt(col[7]?.replace(/"/g,"")?.replace(/,/g,"")) || 0;
-            totalPK += parseInt(col[8]?.replace(/"/g,"")?.replace(/,/g,"")) || 0;
-            totalPGL += parseInt(col[9]?.replace(/"/g,"")?.replace(/,/g,"")) || 0;
-            totalPNG += parseInt(col[11]?.replace(/"/g,"")?.replace(/,/g,"")) || 0;
-
-        }
-
-    });
-
-    document.getElementById("angkatMeter").textContent =
-        totalAM.toLocaleString("id-ID");
-
-    document.getElementById("potongPipa").textContent =
-        totalPP.toLocaleString("id-ID");
-
-    document.getElementById("tb").textContent =
-        totalTB.toLocaleString("id-ID");
-
-    document.getElementById("pk").textContent =
-        totalPK.toLocaleString("id-ID");
-
-    document.getElementById("pgl").textContent =
-        totalPGL.toLocaleString("id-ID");
-
-    document.getElementById("penangguhan").textContent =
-        totalPNG.toLocaleString("id-ID");
-
-});
+ });
